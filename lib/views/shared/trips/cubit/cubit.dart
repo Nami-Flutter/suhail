@@ -78,7 +78,7 @@ class TripsCubit extends Cubit<TripsStates> {
             data: {
               "captain_id" : AppStorage.customerID,
               "max_limit" : getNearestTrips ? 0 : 1,
-            });
+            },);
         nearestTripModel = NearestTripModel.fromJson(response.data);
       } catch (e) {
         emit(TripsErrorState(e.toString()));
