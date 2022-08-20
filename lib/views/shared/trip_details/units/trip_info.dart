@@ -22,7 +22,7 @@ class TripInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('موقع التسليم  ',style: Theme.of(context).textTheme.titleLarge,),
-                Text(tripDataInfo!.tripDeliveryLat.toString() + '   ' +   tripDataInfo.tripDeliveryLong.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor),),
+                Text(tripDataInfo!.tripReceiptAddress.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor),),
               ],
             ),
             Divider(),
@@ -30,7 +30,7 @@ class TripInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('موقع الاستلام  ',style: Theme.of(context).textTheme.titleLarge,),
-                Text(tripDataInfo.tripReceiptLat.toString() + '   ' +   tripDataInfo.tripReceiptLong.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor),),
+                Text(tripDataInfo.tripDeliveryAddress.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor),),
               ],
             ),
             Divider(),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:soheel_app/constants.dart';
+import 'package:soheel_app/core/router/router.dart';
+import 'package:soheel_app/views/captain/commission_bank/view.dart';
 import 'package:soheel_app/views/shared/trip_details/units/map.dart';
 import 'package:soheel_app/widgets/app_bar.dart';
 import 'package:soheel_app/widgets/confirm_button.dart';
@@ -29,7 +31,7 @@ class WalletView extends StatelessWidget {
               ],
             ),
             ConfirmButton(
-              onPressed: (){},
+              onPressed:()=> RouteManager.navigateTo(commissionBankView()),
               color: kAccentColor,
               title: 'دفع العموله عن طريق حساب بنكي',
             ),

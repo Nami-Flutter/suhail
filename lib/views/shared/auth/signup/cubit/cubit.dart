@@ -44,6 +44,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
         if (data['message'] != null) {
           showSnackBar(data['message']);
         } else if (data['captain_status'].toString() == '0') {
+          print(data);
           print(data['customer_id'].runtimeType);
           RouteManager.navigateTo(OtpView(
             customerId: data['captain_id'],

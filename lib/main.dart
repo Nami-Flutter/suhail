@@ -10,7 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
   await AppStorage.init();
-  // getUserAndCache(258, 1);
+  getUserAndCache(258, 1);
   // getUserAndCache(287, 2);
   runApp(const MyApp());
 }

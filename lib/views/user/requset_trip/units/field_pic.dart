@@ -77,8 +77,7 @@ class _PicsUploadsState extends State<PicsUploads> {
                       FontAwesomeIcons.camera,
                       color: kDarkGreyColor,
                     ),
-                  ),
-                )
+                  ),)
       ],
     );
   }

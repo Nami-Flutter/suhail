@@ -4,7 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soheel_app/constants.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
+import 'package:soheel_app/core/router/router.dart';
 import 'package:soheel_app/core/validator/validation.dart';
+import 'package:soheel_app/views/shared/auth/create_new_password/view.dart';
 import 'package:soheel_app/views/user/edit_profile/cubit/cubit.dart';
 import 'package:soheel_app/views/user/edit_profile/cubit/states.dart';
 import 'package:soheel_app/widgets/app/loading.dart';
@@ -79,7 +81,7 @@ class EditProfileView extends StatelessWidget {
                     verticalMargin: 5,
                     controller: cubit.telephoneController,
                     validator: Validator.phoneNumber,
-                    suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
+                    disabled: true,
                   ),
                   // InputFormField(
                   //   hint: '  كلمه المرور',
@@ -103,6 +105,14 @@ class EditProfileView extends StatelessWidget {
                       );
                     },
                   ),
+                  ConfirmButton(
+                    verticalMargin: 10,
+                    horizontalMargin: 20,
+                    color: kPrimaryColor,
+                    title: 'تغيير كلمة المرور',
+                    onPressed:()=> RouteManager.navigateTo(CreateNewPasswordView()),
+                  )
+
                 ],
               ),
             );

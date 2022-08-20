@@ -29,9 +29,10 @@ class _DialogState extends State<_Dialog> {
   Timer? timer;
   int counter = 10;
 
+
   @override
   void initState() {
-    timer = Timer.periodic(Duration(seconds: 1), (timer) async {
+    timer = Timer.periodic(Duration(seconds:1), (timer) async {
       counter--;
       setState(() {});
       if (counter == 1) {
@@ -47,7 +48,6 @@ class _DialogState extends State<_Dialog> {
     });
     super.initState();
   }
-
   @override
   void dispose() {
     timer?.cancel();

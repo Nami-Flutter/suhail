@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:soheel_app/core/router/router.dart';
 import 'package:soheel_app/core/validator/validation.dart';
 import 'package:soheel_app/views/captain/edit_profile/cubit/cubit.dart';
 import 'package:soheel_app/views/captain/edit_profile/cubit/states.dart';
+import 'package:soheel_app/views/shared/auth/create_new_password/view.dart';
 import 'package:soheel_app/widgets/app_bar.dart';
+import 'package:soheel_app/widgets/confirm_button.dart';
 import 'package:soheel_app/widgets/text_form_field.dart';
 
 import '../../../constants.dart';
@@ -61,16 +64,16 @@ class _EditProfileCaptainState extends State<EditProfileCaptain> {
                     fillColor: kWhiteColor,
                     verticalMargin: 5,
                     // controller:cubit.vehicleType,
+                    disabled: true,
                     validator: Validator.name,
-                    suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
                   ),
                   InputFormField(
                     hint: cubit.captainInfoModel?.captainInfo![0].vehicleModel.toString(),
                     fillColor: kWhiteColor,
                     verticalMargin: 5,
                     // controller:cubit.vehicleType,
+                    disabled: true,
                     validator: Validator.name,
-                    suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
                   ),
                   InputFormField(
                     hint: cubit.captainInfoModel?.captainInfo![0].vehicleType.toString(),
@@ -78,16 +81,23 @@ class _EditProfileCaptainState extends State<EditProfileCaptain> {
                     verticalMargin: 5,
                     // controller:cubit.vehicleType,
                     validator: Validator.name,
-                    suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
+                    disabled: true,
                   ),
                   InputFormField(
                     hint: cubit.captainInfoModel?.captainInfo![0].vehicleNumber.toString(),
                     fillColor: kWhiteColor,
                     verticalMargin: 5,
                     // controller:cubit.vehicleType,
+                    disabled: true,
                     validator: Validator.name,
-                    suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
                   ),
+                  ConfirmButton(
+                    verticalMargin: 30,
+                    color: kPrimaryColor,
+                    title: 'تغيير كلمة المرور',
+                    onPressed:()=>RouteManager.navigateTo(CreateNewPasswordView()),
+                  )
+
 
                 ],
               );

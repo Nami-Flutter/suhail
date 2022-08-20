@@ -19,7 +19,7 @@ class ContactUsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ContactUsCubit(),
+      create: (context) => ContactUsCubit()..getContactData(),
       child: Scaffold(
         appBar: appBar(
           title: 'سهيل',
@@ -29,6 +29,7 @@ class ContactUsView extends StatelessWidget {
         body: BlocBuilder<ContactUsCubit,ContactUsStates>(
           builder: (context, state) {
             final cubit = ContactUsCubit.of(context);
+            final contactData = cubit.contactInfoModel;
             return ListView(
               children: [
                 Padding(
@@ -44,12 +45,12 @@ class ContactUsView extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    launchUrl(Uri.parse("tel:+966225542222"));
+                    launchUrl(Uri.parse(contactData!.telephone.toString()));
                   },
                   child: Container(
                     padding: EdgeInsets.all(8),
                     margin: EdgeInsets.symmetric(horizontal: 20),
-                    child: Center(child: Text('966225542222',style: TextStyle(color: kDarkGreyColor,fontSize: 22),)),
+                    child: Center(child: Text(contactData!.telephone.toString(),style: TextStyle(color: kDarkGreyColor,fontSize: 22),)),
                     decoration: BoxDecoration(
                         border: Border.all(
                             color: kDarkGreyColor

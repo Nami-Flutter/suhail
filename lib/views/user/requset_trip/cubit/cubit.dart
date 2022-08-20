@@ -25,6 +25,7 @@ class AddTripCubit extends Cubit<AddTripStates> {
   final String? tripCategory;
   String? costValue;
   TextEditingController detailsController = TextEditingController();
+  int? time_limit;
 
   // source وجهه التسليم || destination وجهه الاستلام
   double? sourceLat, sourceLng;
@@ -134,10 +135,25 @@ class AddTripCubit extends Cubit<AddTripStates> {
   }
 
 
+  Future<void> autoCancellation() async {
+    emit(AddTripLoadingState());
+    try {
+      final response = await DioHelper.post('setting',
+          data: {});
+      final data = response.data;
+      time_limit = data['time_limit'];
+      print(int.parse(data["time_limit"].toString()) * 60);
+    } catch (e, s) {
+      print(e);
+      print(s);
+    }
+    emit(AddTripInitState());
+  }
+
+
   Future<void> openDialog(String tripId) =>
       showDialog(
           context: RouteManager.currentContext,
-          builder: (context) => successOrder(tripId),
-      );
+          builder: (context) => successOrder(tripId),);
 
 }

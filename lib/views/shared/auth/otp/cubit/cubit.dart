@@ -24,20 +24,14 @@ class OtpCubit extends Cubit<OtpStates> {
   Future<void> activate() async{
     emit(OtpLoadingStates());
     try{
-      final response = await DioHelper.post('user/register_activation',
+      final response = await DioHelper.post('captain/register_activation',
           data: {
             'customer_id' : customerId,
             "code" : code
           });
       final data = response.data;
-      if(data['success'] == false){
-        showSnackBar('الكود غير صحيح');
-      }else if (data['success'] == true){
-        RouteManager.navigateAndPopAll(completeRegister ? CCompleteRegisterView(telephone: telephone!,) : HomeView());
-        print('done');
-      }
       if(data['success'] == true){
-
+        RouteManager.navigateAndPopAll(completeRegister ? CCompleteRegisterView(telephone: telephone!,) : HomeView());
       }else {
         showSnackBar(data['message']);
       }
