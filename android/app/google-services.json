@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "166308436745",
+    "project_id": "suhailonline-43730",
+    "storage_bucket": "suhailonline-43730.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166308436745:android:3c61e503556df8d826d1d8",
+        "android_client_info": {
+          "package_name": "com.suhail.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166308436745-mr59riv1sfg14a8mctat675egi9p2333.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8rw3hWxRGH_clbjF5y5XDDIoROaX0lm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166308436745-mr59riv1sfg14a8mctat675egi9p2333.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
