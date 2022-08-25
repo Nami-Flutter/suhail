@@ -34,9 +34,7 @@ class ContactUsCubit extends Cubit<ContactUsStates>{
             "enquiry" : enquiry,
           });
       final data = response.data;
-      print(data);
       contactInfoModel = ContactInfoModel.fromJson(data);
-      print(contactInfoModel);
       if(data.containsKey('success')){
         showSnackBar(data.toString());
         RouteManager.navigateTo(HomeView());
@@ -54,7 +52,6 @@ class ContactUsCubit extends Cubit<ContactUsStates>{
           'contact/contact_info',
           data: {});
       final data = response.data;
-      print(data);
       contactInfoModel = ContactInfoModel.fromJson(data);
     }catch(e){
       emit(ContactUsErrorState(e.toString()));

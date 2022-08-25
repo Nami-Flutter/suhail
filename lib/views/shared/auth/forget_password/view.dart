@@ -19,7 +19,7 @@ class ForgetPasswordView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ForgetPassCubit()..resetPassword(),
+      create: (context) => ForgetPassCubit(),
       child: Scaffold(
         body:BlocBuilder<ForgetPassCubit,ForgetPassStates>(
           builder: (context, state) {
@@ -48,7 +48,7 @@ class ForgetPasswordView extends StatelessWidget {
                       isNext: true,
                       maxLength: 10,
                       verticalMargin: 10,
-                      hint: 'رقم الجوال',
+                      hint: ' رقم الجوال 05xxxxxxxx ',
                       onSave: (v)=>cubit.telephone = v,
                       icon: FontAwesomeIcons.mobileAlt,
                     ),

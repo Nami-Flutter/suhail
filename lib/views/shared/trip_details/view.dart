@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soheel_app/constants.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
@@ -30,6 +31,7 @@ class TripDetailsView extends StatefulWidget {
 
 class _TripDetailsViewState extends State<TripDetailsView> {
   bool isCollapsed = true;
+  double rating = 0;
   @override
   Widget build(BuildContext context) {
 
@@ -68,7 +70,7 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                                         isCollapsed = !isCollapsed;
                                       });
                                     },
-                                    icon: Icon(FontAwesomeIcons.search),
+                                    icon: Icon(FontAwesomeIcons.searchPlus),
                                   ))
                             ],
                           )
@@ -126,7 +128,8 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                                       padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 15),
                                       child: ListView(
                                         children: [
-                                          CaptainInfo()
+                                          CaptainInfo(),
+
                                         ],
                                       ),
                                     ),
@@ -134,13 +137,20 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                                       padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 15),
                                       child: ListView(
                                         children: [
-                                          TripInfo()
+                                          TripInfo(),
                                         ],
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
+                              AppStorage.customerGroup == 1 ?  ConfirmButton(
+                                color: kPrimaryColor,
+                                onPressed: showRating,
+                                horizontalMargin: 20,
+                                verticalMargin: 10,
+                                title: 'تقييم الرحله',
+                              ) :
                               Container(
                                 padding: EdgeInsets.symmetric(horizontal: 20),
                                 child: Builder(
@@ -151,11 +161,11 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                                       if (cubit.tripDetailsModel?.tripDetails!.tripStatus == "0") {
                                         color = kPrimaryColor;
                                         title = 'الموافقة علي الرحلة';
-                                        onTap = ()=> cubit.acceptTrip();
+                                        onTap = cubit.acceptTrip;
                                       } else if (cubit.tripDetailsModel?.tripDetails!.tripStatus == "1") {
                                         color = kAccentColor;
                                         title = 'انهاء الرحلة';
-                                        onTap = ()=> cubit.finishTrip();
+                                        onTap = cubit.finishTrip;
                                       } else if(cubit.tripDetailsModel?.tripDetails!.tripStatus == "2") {
                                         color = kPrimaryColor;
                                         title = 'عودة';
@@ -188,4 +198,47 @@ class _TripDetailsViewState extends State<TripDetailsView> {
       ),
     );
   }
+
+  Widget buildRating()=> RatingBar.builder(
+      itemCount: 5,
+      minRating: 1,
+      initialRating: rating,
+      itemSize: 30,
+      itemPadding: EdgeInsets.symmetric(horizontal: 4),
+      itemBuilder: (context,_)=> Icon(FontAwesomeIcons.solidStar,color: kPrimaryColor,),
+      updateOnDrag: true,
+      onRatingUpdate: (rating)=>setState(() {
+        this.rating = rating;
+        print(rating);
+      })
+  );
+
+  Future showRating(){
+    return showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('تقييم الرحله'),
+              SizedBox(height: 20,),
+              buildRating(),
+              SizedBox(height: 20,),
+              Builder(
+                builder: (context) {
+                  return ConfirmButton(
+                    title: ' اضف تقييمك للرحلة',
+                    onPressed: (){
+                      TripsDetailsCubit(null).addRate(rating ,widget.tripId!);
+                      RouteManager.navigateAndPopAll(TripsView());
+                    },
+                  );
+                },
+              )
+            ],
+          ),
+        ));
+  }
+
 }

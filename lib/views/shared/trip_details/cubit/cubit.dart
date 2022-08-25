@@ -140,29 +140,34 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
     emit(TripDetailsInitState());
   }
 
-  // Future<void> addRate() async {
-  //   emit(TripDetailsLoadingState());
-  //
-  //   try {
-  //     final response = await DioHelper.post('user/trip/add_rating',
-  //         data: {
-  //           "trip_id": tripId,
-  //           "captain_id" : AppStorage.customerID,
-  //           "rating" : rating,
-  //         });
-  //     final data = response.data;
-  //     if (data['success'] == true){
-  //       showSnackBar('تم التقييم بنجاح');
-  //     }
-  //     else{
-  //       showSnackBar('حدث خطأ');
-  //
-  //     }
-  //   } catch (e) {
-  //     emit(TripDetailsErrorState(e.toString()));
-  //   }
-  //   emit(TripDetailsInitState());
-  // }
+  Future<void> addRate(double rating , String tripId) async {
+    emit(TripDetailsLoadingState());
+
+    try {
+      final response = await DioHelper.post('user/trip/add_rating',
+          data: {
+            "trip_id": tripId,
+            "captain_id" : AppStorage.customerID,
+            "rating" : rating,
+          });
+      final data = response.data;
+      print({
+        "trip_id": tripId,
+        "captain_id" : AppStorage.customerID,
+        "rating" : rating,
+      });
+      if (data.containsKey('success') == true){
+        showSnackBar('تم التقييم بنجاح');
+      }
+      else{
+        showSnackBar('حدث خطأ');
+
+      }
+    } catch (e) {
+      emit(TripDetailsErrorState(e.toString()));
+    }
+    emit(TripDetailsInitState());
+  }
 
 @override
   Future<void> close() {

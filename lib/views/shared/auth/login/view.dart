@@ -53,7 +53,7 @@ class LoginView extends StatelessWidget {
                       isNext: true,
                       maxLength: 10,
                       verticalMargin: 10,
-                      hint: 'رقم الجوال',
+                      hint: ' رقم الجوال 05xxxxxxxx ',
                       icon: FontAwesomeIcons.mobileAlt,
                       onSave: (v)=>cubit.telephone = v,
                     ),

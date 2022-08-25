@@ -75,7 +75,7 @@ class SignUpView extends StatelessWidget {
                       isNext: true,
                       maxLength: 10,
                       verticalMargin: 10,
-                      hint: '  رقم الجوال',
+                      hint: ' رقم الجوال 05xxxxxxxx ',
                       onSave: (e)=> cubit.telephone = e,
                     ),
                     InputFormField(

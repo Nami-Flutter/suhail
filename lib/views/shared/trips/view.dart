@@ -99,63 +99,85 @@ class _TripsViewState extends State<TripsView> {
                                 onPressed: cubit.getNearestTrip,
                               ),
                             ],
-                          )
-                              :
-                          ListView.builder(
-                              itemBuilder: (context, index) {
+                          ) :
+                          RefreshIndicator(
+                            onRefresh: TripsCubit.of(context).getNearestTrip,
+                            backgroundColor: kPrimaryColor,
+                            color: kWhiteColor,
+                            displacement: 50.0,
+                            strokeWidth: 3.0,
+                            edgeOffset: 0.0,
+                            child: ListView.builder(
 
-                                 return TripCard(
-                                  image: 'assets/images/truck-1.png',
-                                  status: nearestTripsData[index].name.toString(),
-                                  truckType:nearestTripsData[index].cost.toString(),
-                                  onTap: () => RouteManager.navigateTo(
-                                    TripDetailsView(tripId: nearestTripsData[index].tripId.toString(),),),
-                                );
-                              },
-                              itemCount: nearestTripsData.length
+                                itemBuilder: (context, index) {
+                                   return TripCard(
+                                    image: 'assets/images/truck-1.png',
+                                    status: nearestTripsData[index].name.toString(),
+                                    truckType:nearestTripsData[index].cost.toString(),
+                                    onTap: () => RouteManager.navigateTo(
+                                      TripDetailsView(tripId: nearestTripsData[index].tripId.toString(),),),
+                                  );
+                                },
+                                itemCount: nearestTripsData.length
+                            ),
                           ),
-                          ListView.builder(
-                              itemBuilder: (context, index) {
-                                return finishTripsData == null ? Text('لا توجد بيانات') :
-                                 TripCard(
-                                  image:
-                                  'assets/images/truck-1.png',
-                                  status: finishTripsData[index].name.toString(),
-                                  truckType:
-                                  finishTripsData[index]
-                                      .cost
-                                      .toString(),
-                                  onTap: () =>
-                                      RouteManager.navigateTo(
-                                        TripDetailsView(
-                                          tripId:
-                                          finishTripsData[index]
-                                              .tripId
-                                              .toString(),
-                                        ),
-                                      ),
-                                );
-                              },
-                              itemCount: finishTripsData?.length ?? 0),
-                          ListView.builder(
-                              itemBuilder: (context, index) {
-                                return currentTripsData == null ? Text('لا توجد بيانات') :
-                                 TripCard(
-                                  image: 'assets/images/truck-1.png',
-                                  status:currentTripsData[index].name.toString(),
-                                  truckType: currentTripsData[index].cost.toString(),
-                                  onTap: () => RouteManager.navigateTo(TripDetailsView(
-                                      tripId: currentTripsData[index].tripId.toString()
-                                  ),
-                                  ),
-                                );
-                              },
-                              itemCount: currentTripsData?.length ?? 0),
+                          finishTripsData == null || finishTripsData.isEmpty ? Center(
+                            child: Text('لا توجد رحلات',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+                          ):
+                          RefreshIndicator(
+                            onRefresh: TripsCubit.of(context).getFinishTrips,
+                            backgroundColor: kPrimaryColor,
+                            color: kWhiteColor,
+                            displacement: 50.0,
+                            strokeWidth: 3.0,
+                            edgeOffset: 0.0,
+                            child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return finishTripsData == null ? Text('لا توجد بيانات') :
+                                   TripCard(
+                                    image:
+                                    'assets/images/truck-1.png',
+                                    status: finishTripsData[index].name.toString(),
+                                    truckType:
+                                    finishTripsData[index].cost.toString(),
+                                    onTap: () =>
+                                        RouteManager.navigateTo(
+                                          TripDetailsView(tripId: finishTripsData[index].tripId.toString(),),),
+                                  );
+                                },
+                                itemCount: finishTripsData.length),
+                          ),
+                          currentTripsData == null || currentTripsData.isEmpty ? Center(
+                            child: Text('لا توجد رحلات',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+                          ):
+                          RefreshIndicator(
+                            onRefresh: TripsCubit.of(context).getCurrentTrips,
+                            backgroundColor: kPrimaryColor,
+                            color: kWhiteColor,
+                            displacement: 50.0,
+                            strokeWidth: 3.0,
+                            edgeOffset: 0.0,
+                            child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return currentTripsData == null ? Text('لا توجد بيانات') :
+                                   TripCard(
+                                    image: 'assets/images/truck-1.png',
+                                    status:currentTripsData[index].name.toString(),
+                                    truckType: currentTripsData[index].cost.toString(),
+                                    onTap: () => RouteManager.navigateTo(TripDetailsView(
+                                        tripId: currentTripsData[index].tripId.toString()
+                                    ),
+                                    ),
+                                  );
+                                },
+                                itemCount: currentTripsData.length),
+                          ),
                         ],
                       ) :
                       TabBarView(
                         children: [
-                          finishUserTripsData == null || finishUserTripsData.isEmpty ? Center(child: Text('لا توجد رحلات'),) :   ListView.builder(
+                          finishUserTripsData == null || finishUserTripsData.isEmpty ? Center(child: Text('لا توجد رحلات'),) :
+                          ListView.builder(
                             itemBuilder: (context, index) {
                               return TripCard(
                                 image:
@@ -173,7 +195,8 @@ class _TripsViewState extends State<TripsView> {
                             },
                             itemCount: finishUserTripsData.length,
                           ),
-                          currentUserTripsData == null || finishUserTripsData!.isEmpty ? Center(child: Text('لا توجد رحلات'),) : ListView.builder(
+                          currentUserTripsData == null || finishUserTripsData!.isEmpty ? Center(child: Text('لا توجد رحلات'),) :
+                          ListView.builder(
                             itemBuilder: (context, index) {
                               return TripCard(
                                 image: 'assets/images/truck-1.png',
