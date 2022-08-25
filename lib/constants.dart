@@ -26,6 +26,10 @@ ThemeData theme = ThemeData(
   colorScheme: ColorScheme.fromSwatch().copyWith(secondary: kAccentColor),
 );
 
+String convertSecondsIntoTime(int seconds) {
+  Duration duration = Duration(seconds: seconds);
+  return "${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds - (duration.inMinutes * 60)).toString().padLeft(2, '0')}";
+}
 
 void closeKeyboard() => FocusScope.of(RouteManager.currentContext).requestFocus(FocusNode());
 
