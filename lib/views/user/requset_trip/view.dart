@@ -29,7 +29,7 @@ class _RequestTripViewState extends State<RequestTripView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AddTripCubit(widget.tripCategory),
+      create: (context) => AddTripCubit(widget.tripCategory)..getSearchTimeLimit(),
       child: Scaffold(
         appBar: appBar(
             title:widget.appBarTitle.toString(),

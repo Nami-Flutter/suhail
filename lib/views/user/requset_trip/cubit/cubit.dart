@@ -1,14 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/core/router/router.dart';
-import 'package:soheel_app/views/shared/trips/view.dart';
-import 'package:soheel_app/views/user/home/view.dart';
 import 'package:soheel_app/views/user/requset_trip/cubit/states.dart';
 import 'package:soheel_app/widgets/snack_bar.dart';
 import '../../../../../core/dio_manager/dio_manager.dart';
@@ -18,7 +15,21 @@ class AddTripCubit extends Cubit<AddTripStates> {
   AddTripCubit(this.tripCategory) : super(AddTripInitState());
 
   static AddTripCubit of(context) => BlocProvider.of(context);
-  final ImagePicker _picker = ImagePicker();
+
+  static int? searchTimeLimit;
+
+  void getSearchTimeLimit() {
+    if (searchTimeLimit == null) {
+      try {
+        DioHelper.post('setting').then((value) {
+          searchTimeLimit = int.parse(value.data['time_limit']) * 60;
+        });
+      } catch (_) {
+        searchTimeLimit = 60;
+      }
+    }
+  }
+
   List<File> imageFileList = [];
   DateTime? dateTime;
   TimeOfDay? time;

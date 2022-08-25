@@ -27,8 +27,7 @@ class _Dialog extends StatefulWidget {
 class _DialogState extends State<_Dialog> {
 
   Timer? timer;
-  int counter = 10;
-
+  int counter = AddTripCubit.searchTimeLimit!;
 
   @override
   void initState() {
@@ -56,10 +55,11 @@ class _DialogState extends State<_Dialog> {
 
   @override
   Widget build(BuildContext context) {
+    Duration duration = Duration(seconds: counter);
     return AlertDialog(
       title: Text('جاري البحث عن كابتن برجاء الانتظار'),
       content: Text(
-        '$counter',
+        "${duration.inMinutes.toString().padLeft(2, '0')}:${(duration.inSeconds - (duration.inMinutes * 60)).toString().padLeft(2, '0')}",
         style: TextStyle(color: kPrimaryColor, fontSize: 40, fontWeight: FontWeight.bold),
         textAlign: TextAlign.center,
       ),
