@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:soheel_app/core/app_storage/user.dart';
 
 import '../dio_manager/dio_manager.dart';
+import '../notifications/firebase.dart';
 
 
 
@@ -44,10 +45,10 @@ Future<void> getUserAndCache(int customerID , int customerGroup) async {
       'customer_id': customerID,
     });
     final data = response.data as Map<String, dynamic>;
-    print(data.toString());
     data.addAll({'customer_id': customerID});
     data.addAll({'customer_group': customerGroup});
     await AppStorage.cacheUser(UserModel.fromJson(data));
+    // await FirebaseMessagingHelper.sendFCMToServer();
     // FirebaseHelper.sendFCM();
   } catch (e) {
     throw e;

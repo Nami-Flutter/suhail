@@ -10,6 +10,7 @@ import 'package:soheel_app/views/user/requset_trip/cubit/cubit.dart';
 import 'package:soheel_app/widgets/snack_bar.dart';
 
 import '../../../../constants.dart';
+import '../../../../widgets/app/loading.dart';
 import '../../../../widgets/confirm_button.dart';
 import '../../../shared/trips/view.dart';
 
@@ -27,8 +28,8 @@ class _Dialog extends StatefulWidget {
 class _DialogState extends State<_Dialog> {
 
   Timer? timer;
-  int counter = 10;
-
+  int counter = AddTripCubit.searchTimeLimit!;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -59,19 +60,24 @@ class _DialogState extends State<_Dialog> {
     return AlertDialog(
       title: Text('جاري البحث عن كابتن برجاء الانتظار'),
       content: Text(
-        '$counter',
+        convertSecondsIntoTime(counter),
         style: TextStyle(color: kPrimaryColor, fontSize: 40, fontWeight: FontWeight.bold),
         textAlign: TextAlign.center,
       ),
       actions: [
-        ConfirmButton(
+        isLoading ? Loading() : ConfirmButton(
           title: 'الغاء الرحلة',
           onPressed: () async {
-            final success = await AddTripCubit(null).cancelTrip(widget.tripId);
-            if (success) {
-              RouteManager.pop();
-              showSnackBar('تم الغاء الرحلة', errorMessage: true);
-            }
+            try {
+              setState(() => isLoading = true);
+              final success = await AddTripCubit(null).cancelTrip(widget.tripId);
+              setState(() => isLoading = false);
+              if (success) {
+                RouteManager.pop();
+                showSnackBar('تم الغاء الرحلة', errorMessage: true);
+              }
+            } catch (_) {}
+            setState(() => isLoading = false);
           },
         )
       ],

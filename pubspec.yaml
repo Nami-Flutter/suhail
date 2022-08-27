@@ -47,9 +47,14 @@ dependencies:
   geolocator: ^8.2.0
   url_launcher: ^6.1.5
   flutter_polyline_points: ^1.0.0
-  firebase_messaging: ^12.0.3
-  firebase_core: ^1.21.0
-
+  firebase_messaging: ^10.0.8
+  firebase_core: ^1.7.0
+  flutter_ringtone_player: ^3.2.0
+  # Payments
+  moyasar_payment: ^0.0.9
+  pay:
+  # Webview
+  webview_flutter:
 dev_dependencies:
   flutter_test:
     sdk: flutter

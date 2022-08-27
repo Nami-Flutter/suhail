@@ -49,8 +49,6 @@ class OtpCubit extends Cubit<OtpStates> {
             "telephone" : telephone,
           });
       final data = response.data;
-      print(telephone);
-      print(data);
       showSnackBar(data['success'] ? 'تم ارسال الكود بنجاح!' : 'فشل ارسال الكود!');
     } catch (e){
       showSnackBar('فشل ارسال الكود!');
