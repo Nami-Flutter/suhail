@@ -13,8 +13,8 @@ void main() async {
   // await Firebase.initializeApp();
   DioHelper.init();
   await AppStorage.init();
-  // getUserAndCache(258, 1);
-  // getUserAndCache(287, 2);
+  // getUserAndCache(321, 1);
+  // getUserAndCache(317, 2);
   runApp(const MyApp());
 }
 
