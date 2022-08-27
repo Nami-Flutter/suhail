@@ -50,7 +50,11 @@ dependencies:
   firebase_messaging: ^10.0.8
   firebase_core: ^1.7.0
   flutter_ringtone_player: ^3.2.0
-
+  # Payments
+  moyasar_payment: ^0.0.9
+  pay:
+  # Webview
+  webview_flutter:
 dev_dependencies:
   flutter_test:
     sdk: flutter
