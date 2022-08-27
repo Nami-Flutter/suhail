@@ -1,4 +1,4 @@
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:soheel_app/views/shared/splash/view.dart';
 import 'package:soheel_app/widgets/pop_scaffold.dart';
@@ -9,11 +9,11 @@ import 'core/router/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   DioHelper.init();
   await AppStorage.init();
-  // getUserAndCache(258, 1);
-  // getUserAndCache(287, 2);
+  // getUserAndCache(321, 1);
+  getUserAndCache(317, 2);
   runApp(const MyApp());
 }
 
