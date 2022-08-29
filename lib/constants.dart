@@ -149,6 +149,15 @@ const String MAP_API_KEY = 'AIzaSyAdvXvIQSrguEjx4zPLkjxCYJDYK-tBIrE';
 // //   return imageExtension;
 // // }
 //
+Map<String, dynamic> getParamFromURL(String url) {
+  final uri = Uri.parse(url);
+  Map<String, dynamic> data = {};
+  uri.queryParameters.forEach((key, value) {
+    data[key] = value;
+  });
+  return data;
+}
+
 String reformatTime(TimeOfDay value){
   final reformatted = value.hour.toString().padLeft(2,'0') + ':' + value.minute.toString().padLeft(2,'0') + ':00';
   return reformatted;

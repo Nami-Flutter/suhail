@@ -10,16 +10,14 @@ class BankCubit extends Cubit<BankStates>{
 
   BankModel? bankModel;
 
-
-  Future<void> AllBankList () async{
+  Future<void> getBanks () async{
     emit(BankLoadingStates());
     try{
       final response = await DioHelper.post(
-          'setting/banks_list',
-          data: {});
-      final data = response.data;
-      bankModel = BankModel.fromJson(data);
-
+        'setting/banks_list',
+        data: {},
+      );
+      bankModel = BankModel.fromJson(response.data);
     }catch(e){
       emit(BankErrorStates(e.toString()));
     }

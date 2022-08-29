@@ -21,11 +21,13 @@ class TripsCubit extends Cubit<TripsStates> {
 
   double? captainLat, captainLng;
   bool getNearestTrips = false;
+  bool _isWalletNotificationSent = false;
 
   Future<void> getCurrentTrips() async {
     emit(TripsLoadingState());
     if(AppStorage.customerGroup == 2)
     try {
+      sendWalletNotification();
       await LocationManager.setLocation();
       final response = await DioHelper.post('captain/location/get_current_trips',
           data: {
@@ -86,5 +88,19 @@ class TripsCubit extends Cubit<TripsStates> {
     emit(TripsInitState());
   }
 
+  Future<void> sendWalletNotification() async {
+    if (_isWalletNotificationSent) {
+      return;
+    }
+    try {
+      await DioHelper.post(
+        'captain/account/wallet_notification',
+        data: {
+          'captain_id': AppStorage.customerID,
+        }
+      );
+      _isWalletNotificationSent = true;
+    } catch (e) {}
+  }
 
 }

@@ -11,18 +11,18 @@ import 'package:soheel_app/widgets/app_bar.dart';
 import 'package:soheel_app/widgets/confirm_button.dart';
 import 'package:soheel_app/widgets/text_form_field.dart';
 
-class commissionBankView extends StatefulWidget {
-  const commissionBankView({Key? key}) : super(key: key);
+class CommissionBankView extends StatefulWidget {
+  const CommissionBankView({Key? key}) : super(key: key);
 
   @override
-  _commissionBankViewState createState() => _commissionBankViewState();
+  _CommissionBankViewState createState() => _CommissionBankViewState();
 }
 
-class _commissionBankViewState extends State<commissionBankView> {
+class _CommissionBankViewState extends State<CommissionBankView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => BankCubit()..AllBankList(),
+      create: (context) => BankCubit()..getBanks(),
       child: Scaffold(
         appBar: appBar(
           title: 'سهيل'
