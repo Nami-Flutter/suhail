@@ -48,7 +48,7 @@ Future<void> getUserAndCache(int customerID , int customerGroup) async {
     data.addAll({'customer_id': customerID});
     data.addAll({'customer_group': customerGroup});
     await AppStorage.cacheUser(UserModel.fromJson(data));
-    // await FirebaseMessagingHelper.sendFCMToServer();
+    await FirebaseMessagingHelper.sendFCMToServer();
     // FirebaseHelper.sendFCM();
   } catch (e) {
     throw e;

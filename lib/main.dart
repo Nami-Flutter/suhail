@@ -10,7 +10,7 @@ import 'core/router/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
+  await Firebase.initializeApp();
   DioHelper.init();
   await AppStorage.init();
   // getUserAndCache(321, 1);
