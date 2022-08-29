@@ -58,7 +58,7 @@ class PaymentCubit extends Cubit<PaymentStates> {
       }
     );
     if (response.data['success']) {
-      showSnackBar('نجحت العملية!');
+      showSnackBar('تمت العملية بنجاح!');
       RouteManager.navigateAndPopAll(TripsView());
     } else {
       showSnackBar('فشلت العملية!', errorMessage: true);
