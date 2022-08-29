@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:soheel_app/core/router/router.dart';
+import 'package:soheel_app/views/shared/chat/view.dart';
 import 'package:soheel_app/views/shared/trip_details/cubit/cubit.dart';
 import 'package:soheel_app/views/shared/trip_details/cubit/states.dart';
 
@@ -16,8 +18,9 @@ class CaptainInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TripsDetailsCubit,TripDetailsStates>(
       builder: (context, state) {
-        final cubit = TripsDetailsCubit.of(context).tripDetailsModel;
-        final captainInfo = cubit?.captainDetails;
+        final cubit = TripsDetailsCubit.of(context);
+        final tripDetailsModel = cubit.tripDetailsModel;
+        final captainInfo = tripDetailsModel?.captainDetails;
         return captainInfo == null || captainInfo.isEmpty ? SizedBox() :
          Column(
           children: [
@@ -32,10 +35,13 @@ class CaptainInfo extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                CircleAvatar(
-                  radius: 22,
-                  backgroundColor: kPrimaryColor,
-                  child: Icon(FontAwesomeIcons.commentDots,size: 24,),
+                InkWell(
+                  onTap: () => RouteManager.navigateTo(ChatView(title: captainInfo[0].captainName.toString(), tripID: cubit.tripId!, receiverID: captainInfo[0].captainId!,)),
+                  child: CircleAvatar(
+                    radius: 22,
+                    backgroundColor: kPrimaryColor,
+                    child: Icon(FontAwesomeIcons.commentDots,size: 24,),
+                  ),
                 )
               ],
             ),

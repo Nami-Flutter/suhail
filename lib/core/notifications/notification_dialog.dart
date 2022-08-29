@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:soheel_app/views/shared/trip_details/view.dart';
+import 'package:soheel_app/views/shared/trips/view.dart';
 
 import '../../constants.dart';
 import '../../widgets/my_text.dart';
@@ -8,7 +9,7 @@ import '../router/router.dart';
 
 bool _isNotificationDialogVisible = false;
 
-showNotificationDialog({required String title, required String body, required String orderID}) {
+showNotificationDialog({required String title, required String body}) {
   if (_isNotificationDialogVisible) {
     RouteManager.pop();
   }
@@ -16,13 +17,13 @@ showNotificationDialog({required String title, required String body, required St
   showCupertinoDialog(
     context: RouteManager.currentContext,
     barrierDismissible: false,
-    builder: (context) => _Dialog(title, body, orderID),
+    builder: (context) => _Dialog(title, body),
   );
 }
 
 class _Dialog extends StatelessWidget {
-  final String title, body, orderID;
-  _Dialog(this.title,this.body, this.orderID);
+  final String title, body;
+  _Dialog(this.title,this.body);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -58,7 +59,8 @@ class _Dialog extends StatelessWidget {
               ),
               onPressed: () {
                 _isNotificationDialogVisible = false;
-                RouteManager.navigateAndPopUntilFirstPage(TripDetailsView(tripId: orderID));
+                RouteManager.navigateAndPopUntilFirstPage(TripsView());
+                // RouteManager.navigateAndPopUntilFirstPage(TripDetailsView(tripId: orderID));
               },
             ),
           ],

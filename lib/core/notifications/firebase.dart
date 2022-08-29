@@ -25,7 +25,6 @@ class FirebaseMessagingHelper {
       showNotificationDialog(
         title: event.notification?.title ?? '',
         body: event.notification?.body ?? '',
-        orderID: event.data['trip_id'],
       );
     });
   }

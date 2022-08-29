@@ -55,6 +55,15 @@ dependencies:
   pay:
   # Webview
   webview_flutter:
+  # Permission Handler
+  permission_handler: ^8.3.0
+  # Playing Audios
+  assets_audio_player: ^3.0.5
+  # Recording Audios
+  record: ^2.0.0
+  # For getting path of device
+  path_provider: ^2.0.11
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

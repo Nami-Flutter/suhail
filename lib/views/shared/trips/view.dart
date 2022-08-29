@@ -195,7 +195,7 @@ class _TripsViewState extends State<TripsView> {
                             },
                             itemCount: finishUserTripsData.length,
                           ),
-                          currentUserTripsData == null || finishUserTripsData!.isEmpty ? Center(child: Text('لا توجد رحلات'),) :
+                          currentUserTripsData == null || currentUserTripsData.isEmpty ? Center(child: Text('لا توجد رحلات'),) :
                           ListView.builder(
                             itemBuilder: (context, index) {
                               return TripCard(

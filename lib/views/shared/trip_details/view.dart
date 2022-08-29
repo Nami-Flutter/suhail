@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:soheel_app/constants.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/core/router/router.dart';
@@ -62,15 +63,19 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                             children: [
                               MapSection(),
                               Positioned(
-                                  bottom: 20,
-                                  left: 20,
+                                  bottom: 40,
+                                  left: 0,
                                   child: IconButton(
                                     onPressed: () {
                                       setState(() {
                                         isCollapsed = !isCollapsed;
                                       });
                                     },
-                                    icon: Icon(FontAwesomeIcons.searchPlus),
+                                    icon: Icon(
+                                      !isCollapsed ? Icons.arrow_circle_down : Icons.arrow_circle_up,
+                                      size: 50,
+                                      color: kPrimaryColor,
+                                    ),
                                   ))
                             ],
                           )
