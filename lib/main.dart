@@ -5,7 +5,6 @@ import 'package:soheel_app/widgets/pop_scaffold.dart';
 import 'constants.dart';
 import 'core/app_storage/app_storage.dart';
 import 'core/dio_manager/dio_manager.dart';
-import 'core/notifications/firebase.dart';
 import 'core/router/router.dart';
 
 void main() async {
