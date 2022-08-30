@@ -93,19 +93,19 @@ drawer(){
                     ),
                   ),
                 ) : SizedBox(),
-                AppStorage.customerGroup == 2 ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
-                  child: InkWell(
-                    onTap: (){},
-                    child: Row(
-                      children: [
-                        Icon(FontAwesomeIcons.moneyBill,color: kPrimaryColor,size: 24,),
-                        SizedBox(width: 10,),
-                        Text('الحساب البنكي ',style: TextStyle(fontSize: 18,color: kAccentColor),)
-                      ],
-                    ),
-                  ),
-                ) : SizedBox(),
+                // AppStorage.customerGroup == 2 ? Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+                //   child: InkWell(
+                //     onTap: (){},
+                //     child: Row(
+                //       children: [
+                //         Icon(FontAwesomeIcons.moneyBill,color: kPrimaryColor,size: 24,),
+                //         SizedBox(width: 10,),
+                //         Text('الحساب البنكي ',style: TextStyle(fontSize: 18,color: kAccentColor),)
+                //       ],
+                //     ),
+                //   ),
+                // ) : SizedBox(),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
                   child: InkWell(

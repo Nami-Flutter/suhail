@@ -31,7 +31,6 @@ class _FieldsState extends State<Fields> {
                 appTitle: 'ادخل وجهه التسليم',
                 onConfirm: (lat, lng, city) {
                   cubit.setSourceLocation(sourceLat: lat, sourceLng: lng, cityName: city);
-                  print(lng + lat);
                   cubit.getCost();
                 },
               )

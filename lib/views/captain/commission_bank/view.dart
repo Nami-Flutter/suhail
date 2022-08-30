@@ -90,14 +90,15 @@ class _CommissionBankViewState extends State<CommissionBankView> {
                       // crossAxisAlignment: WrapCrossAlignment.center,
                       alignment: WrapAlignment.start,
                       children: [
-                        ...cubit.imageFileList.map((e) => Stack(
+                        cubit.receipetImage != null
+                            ? Stack(
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.file(
-                                    File(e.path),
+                                    File(cubit.receipetImage!.path),
                                     fit: BoxFit.cover,
                                     width: sizeFromWidth(3.5),
                                     height: 100,
@@ -106,7 +107,7 @@ class _CommissionBankViewState extends State<CommissionBankView> {
                             Positioned(
                               child: IconButton(
                                 onPressed: () {
-                                  cubit.imageFileList.remove(e);
+                                  cubit.receipetImage = null;
                                   setState(() {});
                                 },
                                 icon: Icon(
@@ -116,36 +117,76 @@ class _CommissionBankViewState extends State<CommissionBankView> {
                                 ),
                               ),),
                           ],
-                        ))
-                            .toList(),
-                        if (cubit.imageFileList.length < 2)
-                          cubit.imageFileList.isEmpty ?  MaterialButton(
-                            onPressed: () {
-                              cubit.selectImages();
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(20),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: kWhiteColor),
-                              child: Icon(
-                                FontAwesomeIcons.camera,
-                                color: kDarkGreyColor,
-                              ),
+                        )
+                            : MaterialButton(
+                          onPressed: cubit.selectImages,
+                          child: Container(
+                            margin: EdgeInsets.only(top: 30),
+                            padding: EdgeInsets.all(20),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: kWhiteColor),
+                            child: Icon(
+                              FontAwesomeIcons.camera,
+                              color: kDarkGreyColor,
                             ),
-                          ) : MaterialButton(
-                            onPressed: cubit.selectImages,
-                            child: Container(
-                              margin: EdgeInsets.only(top: 30),
-                              padding: EdgeInsets.all(20),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: kWhiteColor),
-                              child: Icon(
-                                FontAwesomeIcons.camera,
-                                color: kDarkGreyColor,
-                              ),
-                            ),)
+                          ),),
+                        // ...cubit.imageFileList.map((e) => Stack(
+                        //   children: [
+                        //     Padding(
+                        //       padding: const EdgeInsets.all(8.0),
+                        //       child: ClipRRect(
+                        //           borderRadius: BorderRadius.circular(10),
+                        //           child: Image.file(
+                        //             File(e.path),
+                        //             fit: BoxFit.cover,
+                        //             width: sizeFromWidth(3.5),
+                        //             height: 100,
+                        //           )),
+                        //     ),
+                        //     Positioned(
+                        //       child: IconButton(
+                        //         onPressed: () {
+                        //           cubit.receipetImage = null;
+                        //           setState(() {});
+                        //         },
+                        //         icon: Icon(
+                        //           FontAwesomeIcons.trash,
+                        //           color: kRedColor,
+                        //           size: 16,
+                        //         ),
+                        //       ),),
+                        //   ],
+                        // ))
+                        //     .toList(),
+                        // if (cubit.imageFileList.length < 2)
+                        //   cubit.imageFileList.isEmpty ?  MaterialButton(
+                        //     onPressed: () {
+                        //       cubit.selectImages();
+                        //     },
+                        //     child: Container(
+                        //       padding: EdgeInsets.all(20),
+                        //       decoration: BoxDecoration(
+                        //           borderRadius: BorderRadius.circular(10),
+                        //           color: kWhiteColor),
+                        //       child: Icon(
+                        //         FontAwesomeIcons.camera,
+                        //         color: kDarkGreyColor,
+                        //       ),
+                        //     ),
+                        //   ) : MaterialButton(
+                        //     onPressed: cubit.selectImages,
+                        //     child: Container(
+                        //       margin: EdgeInsets.only(top: 30),
+                        //       padding: EdgeInsets.all(20),
+                        //       decoration: BoxDecoration(
+                        //           borderRadius: BorderRadius.circular(10),
+                        //           color: kWhiteColor),
+                        //       child: Icon(
+                        //         FontAwesomeIcons.camera,
+                        //         color: kDarkGreyColor,
+                        //       ),
+                        //     ),)
                       ],
                     ),
                         ConfirmButton(

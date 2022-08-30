@@ -72,7 +72,6 @@ class OtpView extends StatelessWidget {
                           Text(' لم تستلم رساله ؟  ',style: getTextTheme.titleMedium!.copyWith(color: kBlueColor),),
                           InkWell(
                             onTap: (){
-                              print(customerId);
                               cubit.resendCode();
                             },
                             child:Text('أعد الارسال ',style: getTextTheme.titleMedium!.copyWith(color: kPrimaryColor),),

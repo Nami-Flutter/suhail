@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soheel_app/constants.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
+import 'package:soheel_app/core/permission_manager/permissions_section.dart';
 import 'package:soheel_app/core/router/router.dart';
 import 'package:soheel_app/views/shared/trip_details/view.dart';
 import 'package:soheel_app/views/shared/trips/cubit/cubit.dart';
@@ -84,6 +85,11 @@ class _TripsViewState extends State<TripsView> {
                         ],
                       ),
                     ),
+                    if (AppStorage.customerGroup == 2)
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: AppPermissionsSections(),
+                      ),
                     Expanded(
                       child:AppStorage.customerGroup == 2 ?  TabBarView(
                         children: [

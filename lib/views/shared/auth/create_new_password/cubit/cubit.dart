@@ -36,7 +36,6 @@ class NewPasswordCubit extends Cubit<NewPasswordStates>{
               "confirm" : confirm,
             });
         final data = response.data;
-        print(data);
         showSnackBar(data['success']);
 
     }catch(e){

@@ -29,7 +29,6 @@ class ForgetPassCubit extends Cubit<ForgetPassStates>{
           data: {
             "telephone" : telephone,
           });
-      print(telephone);
 
       final data = response.data;
       if(data.containsKey('success'))

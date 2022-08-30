@@ -214,7 +214,6 @@ class _TripDetailsViewState extends State<TripDetailsView> {
       updateOnDrag: true,
       onRatingUpdate: (rating)=>setState(() {
         this.rating = rating;
-        print(rating);
       })
   );
 
