@@ -18,12 +18,11 @@ class BankCubit extends Cubit<BankStates>{
 
   BankModel? bankModel;
 
-  Future<void> getBanks () async{
   String? senderName, sendingBank , receivingBank , receiptPhoto;
   List<File> imageFileList = [];
   final formKey = GlobalKey<FormState>();
 
-  Future<void> AllBankList () async{
+  Future<void> getBanks () async{
     emit(BankLoadingStates());
     try{
       final response = await DioHelper.post(
@@ -88,5 +87,4 @@ class BankCubit extends Cubit<BankStates>{
     }
     emit((BankInitStates()));
   }
-
 }
