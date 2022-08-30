@@ -49,7 +49,7 @@ class VehicleInfoView extends StatelessWidget {
                 onChanged: (v) => cubit.selectedCategory = v,
               ),
               DropMenu(
-                hint: ' المودل',
+                hint: ' الموديل',
                 items: cubit.categoriesModel?.manufacturers ?? [],
                 isItemsModel: true,
                 value: cubit.selectedManufacturer,
@@ -82,7 +82,7 @@ class VehicleInfoView extends StatelessWidget {
                 items: cubit.manufacturerDetailsYears,
               ),
               InputFormField(
-                hint: 'رقم اللوحه',
+                hint: 'رقم اللوحة',
                 fillColor: kWhiteColor,
                 verticalMargin: 5,
                 controller: cubit.platformNumberController,

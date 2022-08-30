@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soheel_app/constants.dart';
+import 'package:soheel_app/core/validator/validation.dart';
 import 'package:soheel_app/views/captain/commission_bank/cubit/cubit.dart';
 import 'package:soheel_app/views/captain/commission_bank/cubit/states.dart';
 import 'package:soheel_app/widgets/app/BankExpansionCard.dart';
@@ -54,41 +57,102 @@ class _commissionBankViewState extends State<commissionBankView> {
                     child: Text('بينات التحويل : ',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20),),
                   ),
                   Form(
+                    key: cubit.formKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         InputFormField(
-                          hint: 'اسم البنك المرسل منه',
+                          hint: ' اسم الراسل',
                           verticalMargin: 10,
-                          onPressed: (){},
+                          validator: Validator.name,
                           isNext: true,
+                          onSave: (v)=> cubit.senderName = v,
                         ),
                         InputFormField(
                           hint: 'اسم البنك المرسل منه',
                           verticalMargin: 10,
-                          onPressed: (){},
+                          validator: Validator.name,
+                          isNext: true,
+                          onSave: (v)=> cubit.sendingBank = v,
+                        ),
+                        InputFormField(
+                          hint: 'اسم البنك المرسل اليه',
+                          verticalMargin: 10,
+                          validator: Validator.name,
+                          onSave: (v)=> cubit.receivingBank = v,
                           isNext: true,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           child: Text('  ارفق صوره التحويل : ',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20),),
                         ),
-                        MaterialButton(
-                          onPressed: () {},
-                          child: Container(
-                            padding: EdgeInsets.all(20),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: kWhiteColor),
-                            child: Icon(
-                              FontAwesomeIcons.camera,
-                              color: kDarkGreyColor,
+                        Wrap(
+                      // crossAxisAlignment: WrapCrossAlignment.center,
+                      alignment: WrapAlignment.start,
+                      children: [
+                        ...cubit.imageFileList.map((e) => Stack(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.file(
+                                    File(e.path),
+                                    fit: BoxFit.cover,
+                                    width: sizeFromWidth(3.5),
+                                    height: 100,
+                                  )),
                             ),
-                          ),
-                        ),
+                            Positioned(
+                              child: IconButton(
+                                onPressed: () {
+                                  cubit.imageFileList.remove(e);
+                                  setState(() {});
+                                },
+                                icon: Icon(
+                                  FontAwesomeIcons.trash,
+                                  color: kRedColor,
+                                  size: 16,
+                                ),
+                              ),),
+                          ],
+                        ))
+                            .toList(),
+                        if (cubit.imageFileList.length < 2)
+                          cubit.imageFileList.isEmpty ?  MaterialButton(
+                            onPressed: () {
+                              cubit.selectImages();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: kWhiteColor),
+                              child: Icon(
+                                FontAwesomeIcons.camera,
+                                color: kDarkGreyColor,
+                              ),
+                            ),
+                          ) : MaterialButton(
+                            onPressed: cubit.selectImages,
+                            child: Container(
+                              margin: EdgeInsets.only(top: 30),
+                              padding: EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: kWhiteColor),
+                              child: Icon(
+                                FontAwesomeIcons.camera,
+                                color: kDarkGreyColor,
+                              ),
+                            ),)
+                      ],
+                    ),
                         ConfirmButton(
                           title: 'ارسال',
-                          onPressed: (){},
+                          onPressed:(){
+                            cubit.transferAccountBank();
+                          } ,
                           color: kPrimaryColor,
                         )
                       ],
