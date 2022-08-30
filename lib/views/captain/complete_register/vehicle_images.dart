@@ -42,7 +42,7 @@ class VehicleImagesView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('ارفع صور المركبه',style: Theme.of(context).textTheme.headline5!.copyWith(color: kAccentColor),),
+                      Text('ارفع صور المركبة',style: Theme.of(context).textTheme.headline5!.copyWith(color: kAccentColor),),
                       Text('ارفق صور المركبه  لا يقل عن 2 صور',style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kBlueColor),),
                     ],
                   )

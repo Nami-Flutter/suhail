@@ -62,13 +62,13 @@ class _TripsViewState extends State<TripsView> {
                             borderRadius: BorderRadius.circular(10)),
                         tabs: [
                           Tab(
-                            text: 'الرحلات المعلقه',
+                            text: 'الرحلات المعلقة',
                           ),
                           Tab(
-                            text: 'الرحلات السابقه',
+                            text: 'الرحلات السابقة',
                           ),
                           Tab(
-                            text: 'الرحلات النشطه',
+                            text: 'الرحلات النشطة',
                           ),
                         ],
                       ) : TabBar(
@@ -76,10 +76,10 @@ class _TripsViewState extends State<TripsView> {
                         indicator: BoxDecoration(color: kPrimaryColor, borderRadius: BorderRadius.circular(10)),
                         tabs: [
                           Tab(
-                            text: 'الرحلات السابقه',
+                            text: 'الرحلات السابقة',
                           ),
                           Tab(
-                            text: 'الرحلات النشطه',
+                            text: 'الرحلات النشطة',
                           ),
                         ],
                       ),
@@ -107,18 +107,47 @@ class _TripsViewState extends State<TripsView> {
                             displacement: 50.0,
                             strokeWidth: 3.0,
                             edgeOffset: 0.0,
-                            child: ListView.builder(
+                            child: Column(
+                              children: [
+                                ListView.builder(
+                                    itemBuilder: (context, index) {
+                                       return TripCard(
+                                        image: 'assets/images/truck-1.png',
+                                        status: nearestTripsData[index].name.toString(),
+                                        truckType:nearestTripsData[index].cost.toString(),
+                                        onTap: () => RouteManager.navigateTo(
+                                          TripDetailsView(tripId: nearestTripsData[index].tripId.toString(),),),
+                                      );
+                                    },
+                                    itemCount: nearestTripsData.length
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: MaterialButton(
+                                          child: Text('تفاصيل الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
+                                          onPressed: (){},
+                                          padding: EdgeInsets.all(10),
+                                          color: kPrimaryColor,
 
-                                itemBuilder: (context, index) {
-                                   return TripCard(
-                                    image: 'assets/images/truck-1.png',
-                                    status: nearestTripsData[index].name.toString(),
-                                    truckType:nearestTripsData[index].cost.toString(),
-                                    onTap: () => RouteManager.navigateTo(
-                                      TripDetailsView(tripId: nearestTripsData[index].tripId.toString(),),),
-                                  );
-                                },
-                                itemCount: nearestTripsData.length
+                                        ),
+                                      ),
+                                      SizedBox(width: 10,),
+                                      Expanded(
+                                        child: MaterialButton(
+                                          child: Text('قبول الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
+                                          onPressed: (){},
+                                          padding: EdgeInsets.all(10),
+                                          color: kPrimaryColor,
+                                        ),
+                                      ),
+
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                           finishTripsData == null || finishTripsData.isEmpty ? Center(
@@ -159,16 +188,16 @@ class _TripsViewState extends State<TripsView> {
                             edgeOffset: 0.0,
                             child: ListView.builder(
                                 itemBuilder: (context, index) {
-                                  return currentTripsData == null ? Text('لا توجد بيانات') :
+                                  return currentTripsData == null ? Text('لا توجد رحلات') :
                                    TripCard(
-                                    image: 'assets/images/truck-1.png',
-                                    status:currentTripsData[index].name.toString(),
-                                    truckType: currentTripsData[index].cost.toString(),
-                                    onTap: () => RouteManager.navigateTo(TripDetailsView(
-                                        tripId: currentTripsData[index].tripId.toString()
-                                    ),
-                                    ),
-                                  );
+                                   image: 'assets/images/truck-1.png',
+                                   status:currentTripsData[index].name.toString(),
+                                   truckType: currentTripsData[index].cost.toString(),
+                                   onTap: () => RouteManager.navigateTo(TripDetailsView(
+                                       tripId: currentTripsData[index].tripId.toString()
+                                   ),
+                                   ),
+                                   );
                                 },
                                 itemCount: currentTripsData.length),
                           ),
