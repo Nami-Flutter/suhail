@@ -12,8 +12,9 @@ void main() async {
   await Firebase.initializeApp();
   DioHelper.init();
   await AppStorage.init();
-  // getUserAndCache(321, 1);
-  getUserAndCache(317, 2);
+  getUserAndCache(321, 1);
+  // getUserAndCache(317, 2);
+  // getUserAndCache(324, 2);
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {

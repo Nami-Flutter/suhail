@@ -96,34 +96,7 @@ class _FieldsState extends State<Fields> {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-          child: Text('تكلفة الرحلة  : ',style: Theme.of(context).textTheme.headline5!.copyWith(color: kPrimaryColor),),
-        ),
-        InkWell(
-          onTap: cubit.getCost,
-          splashColor: kPrimaryColor,
-          hoverColor: kPrimaryColor,
-          child: Container(
-            padding: EdgeInsets.all(15),
-            margin: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: kWhiteColor
-            ),
-            child: Row(
-              children: [
-                Icon(FontAwesomeIcons.solidMoneyBillAlt,size: 26,color: kPrimaryColor,),
-                SizedBox(width: 20,),
-                Text('تكلفة الرحله',style: Theme.of(context).textTheme.headline6!.copyWith(color: kBlueColor),),
-                Spacer(),
-                Text(cubit.costValue == null ? '0.0' : cubit.costValue!,style: Theme.of(context).textTheme.headline6!.copyWith(color: kPrimaryColor),)
-
-              ],
-            ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-          child: Text('  حدد الوقت و التاريخ   : ',style: Theme.of(context).textTheme.headline5!.copyWith(color: kPrimaryColor),),
+          child: Text('  حدد الوقت و التاريخ   : ',style: Theme.of(context).textTheme.headline6!.copyWith(color: kPrimaryColor),),
         ),
         InkWell(
           onTap: () {
@@ -190,6 +163,34 @@ class _FieldsState extends State<Fields> {
             ),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          child: Text('تكلفة الرحلة  : ',style: Theme.of(context).textTheme.headline6!.copyWith(color: kPrimaryColor),),
+        ),
+        InkWell(
+          onTap: cubit.getCost,
+          splashColor: kPrimaryColor,
+          hoverColor: kPrimaryColor,
+          child: Container(
+            padding: EdgeInsets.all(15),
+            margin: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: kWhiteColor
+            ),
+            child: Row(
+              children: [
+                Icon(FontAwesomeIcons.solidMoneyBillAlt,size: 26,color: kPrimaryColor,),
+                SizedBox(width: 20,),
+                Text('تكلفة الرحله',style: Theme.of(context).textTheme.headline6!.copyWith(color: kBlueColor),),
+                Spacer(),
+                Text(cubit.costValue == null ? '0.0' : cubit.costValue!,style: Theme.of(context).textTheme.headline6!.copyWith(color: kPrimaryColor),)
+
+              ],
+            ),
+          ),
+        ),
+
       ],
     );
   }

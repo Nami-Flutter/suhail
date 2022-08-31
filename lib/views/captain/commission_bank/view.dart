@@ -54,7 +54,7 @@ class _CommissionBankViewState extends State<CommissionBankView> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: Text('بينات التحويل : ',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20),),
+                    child: Text('بيانات التحويل : ',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20),),
                   ),
                   Form(
                     key: cubit.formKey,
