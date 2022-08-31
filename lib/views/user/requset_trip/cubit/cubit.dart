@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:soheel_app/constants.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/core/router/router.dart';
 import 'package:soheel_app/views/user/requset_trip/cubit/states.dart';
@@ -119,8 +120,8 @@ class AddTripCubit extends Cubit<AddTripStates> {
       'trip_receipt_lat': sourceLat,
       'trip_receipt_address': sourceCityName,
       'trip_cost': costValue,
-      'trip_date': dateTime,
-      'trip_time': time,
+      'trip_date': reformatDate(dateTime!),
+      'trip_time': reformatTime(time!),
       'trip_details': detailsController.text,
     };
     final formData = FormData.fromMap(data);

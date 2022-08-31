@@ -55,9 +55,7 @@ class ContactUsView extends StatelessWidget {
                     ),
                   ),
                   InkWell(
-                    onTap: () {
-                      launchUrl(Uri.parse(contactData.telephone!));
-                    },
+                    onTap: () => launchUrl(Uri.parse('tel:' + contactData.telephone!)),
                     child: Container(
                       padding: EdgeInsets.all(8),
                       margin: EdgeInsets.symmetric(horizontal: 20),

@@ -9,6 +9,7 @@ import '../../constants.dart';
 import '../../widgets/snack_bar.dart';
 import '../app_storage/app_storage.dart';
 import '../dio_manager/dio_manager.dart';
+import 'search_model.dart';
 
 class LocationManager {
 
@@ -109,7 +110,7 @@ class LocationManager {
     final response = await Dio().post(url);
     if(response.statusCode == 200){
       final data = response.data;
-      location = data['results'][1]['address_components'][2]['short_name'];
+      location = data['results'][1]['formatted_address'];
       return location!;
     }else
       throw Exception('Cannot get City by LatLng');
@@ -136,4 +137,16 @@ class LocationManager {
     return Set<Polyline>.of(polyLines.values);
   }
 
+  static Future<SearchModel?> getSearchResults(String input)async{
+    SearchModel? searchModel;
+    try{
+      final response = await Dio().post('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?key=$MAP_API_KEY&input=$input&inputtype=textquery&fields=geometry,formatted_address&language=ar');
+      searchModel = SearchModel.fromJson(response.data);
+      if(searchModel.candidates!.isEmpty)
+        searchModel = null;
+    }catch(e){
+      showSnackBar(e.toString(), errorMessage: true);
+    }
+    return searchModel;
+  }
 }
