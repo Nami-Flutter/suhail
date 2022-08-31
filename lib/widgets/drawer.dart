@@ -22,19 +22,32 @@ drawer(){
     backgroundColor: kWhiteColor,
     child: Column(
       children: [
-        if (AppStorage.isLogged)
-        DrawerHeader(
+        AppStorage.customerGroup == 2 ?  DrawerHeader(
           decoration: BoxDecoration(
-            color: kPrimaryColor
+              color: kPrimaryColor
           ),
           child: Row(
-          children: [
-            Image.asset('assets/images/logo.png',width: sizeFromWidth(5),height: sizeFromHeight(3),),
-            SizedBox(width: 20,),
-            Text(AppStorage.getUserModel()!.firstname.toString(),style: TextStyle(fontSize: 24,color: kWhiteColor),)
-          ],
-        ),),
-        SizedBox(height: 10,),
+            children: [
+              Image.asset('assets/images/logo.png',width: sizeFromWidth(5),height: sizeFromHeight(3),),
+              SizedBox(width: 20,),
+              Text(AppStorage.getUserModel()!.firstname.toString(),style: TextStyle(fontSize: 24,color: kWhiteColor),)
+            ],
+          ),) :
+        AppStorage.customerGroup == 1 ?  DrawerHeader(
+          decoration: BoxDecoration(
+              color: kPrimaryColor
+          ),
+          child: Row(
+            children: [
+              Image.asset('assets/images/logo.png',width: sizeFromWidth(5),height: sizeFromHeight(3),),
+              SizedBox(width: 20,),
+              Text(AppStorage.getUserModel()?.firstname.toString() ?? '',style: TextStyle(fontSize: 24,color: kWhiteColor),)
+            ],
+          ),) :
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset('assets/images/logo.png',height: sizeFromHeight(5),),
+        ),
         Expanded(
           child: Container(
             child: ListView(
@@ -61,7 +74,7 @@ drawer(){
                       children: [
                         Icon(FontAwesomeIcons.truck,color: kPrimaryColor,size: 24,),
                         SizedBox(width: 10,),
-                        Text('الرحلات الحالية',style: TextStyle(fontSize: 18,color: kAccentColor),)
+                        Text('الرحلات',style: TextStyle(fontSize: 18,color: kAccentColor),)
                       ],
                     ),
                   ),
@@ -88,20 +101,7 @@ drawer(){
                       children: [
                         Icon(FontAwesomeIcons.wallet,color: kPrimaryColor,size: 24,),
                         SizedBox(width: 10,),
-                        Text('المحفظه ',style: TextStyle(fontSize: 18,color: kAccentColor),)
-                      ],
-                    ),
-                  ),
-                ) : SizedBox(),
-                AppStorage.customerGroup == 2 ? Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
-                  child: InkWell(
-                    onTap: (){},
-                    child: Row(
-                      children: [
-                        Icon(FontAwesomeIcons.moneyBill,color: kPrimaryColor,size: 24,),
-                        SizedBox(width: 10,),
-                        Text('الحساب البنكي ',style: TextStyle(fontSize: 18,color: kAccentColor),)
+                        Text('المحفظة ',style: TextStyle(fontSize: 18,color: kAccentColor),)
                       ],
                     ),
                   ),

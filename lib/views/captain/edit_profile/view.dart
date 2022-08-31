@@ -37,69 +37,82 @@ class _EditProfileCaptainState extends State<EditProfileCaptain> {
             builder: (context, state) {
               final cubit = EditProfileCaptainCubit.of(context);
               final vehicleData = cubit.captainInfoModel?.captainInfo;
-              return  ListView(
-                children: [
-                  InputFormField(
-                    hint: '  الاسم الاول',
-                    fillColor: kWhiteColor,
-                    verticalMargin: 5,
-                    controller:cubit.firstNameController,
-                    validator: Validator.name,
-                    suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
-                  ),
-                  InputFormField(
-                    hint: '  الاسم الأخير',
-                    fillColor: kWhiteColor,
-                    verticalMargin: 5,
-                    controller:cubit.lastNameController,
-                    validator: Validator.name,
-                    suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20),
-                    child: Text('معلومات المركبة',style: TextStyle(fontSize: 20,color: kPrimaryColor),),
-                  ),
-                  InputFormField(
-                    hint: cubit.captainInfoModel?.captainInfo![0].categoryName.toString(),
-                    fillColor: kWhiteColor,
-                    verticalMargin: 5,
-                    // controller:cubit.vehicleType,
-                    disabled: true,
-                    validator: Validator.name,
-                  ),
-                  InputFormField(
-                    hint: cubit.captainInfoModel?.captainInfo![0].vehicleModel.toString(),
-                    fillColor: kWhiteColor,
-                    verticalMargin: 5,
-                    // controller:cubit.vehicleType,
-                    disabled: true,
-                    validator: Validator.name,
-                  ),
-                  InputFormField(
-                    hint: cubit.captainInfoModel?.captainInfo![0].vehicleType.toString(),
-                    fillColor: kWhiteColor,
-                    verticalMargin: 5,
-                    // controller:cubit.vehicleType,
-                    validator: Validator.name,
-                    disabled: true,
-                  ),
-                  InputFormField(
-                    hint: cubit.captainInfoModel?.captainInfo![0].vehicleNumber.toString(),
-                    fillColor: kWhiteColor,
-                    verticalMargin: 5,
-                    // controller:cubit.vehicleType,
-                    disabled: true,
-                    validator: Validator.name,
-                  ),
-                  ConfirmButton(
-                    verticalMargin: 30,
-                    color: kPrimaryColor,
-                    title: 'تغيير كلمة المرور',
-                    onPressed:()=>RouteManager.navigateTo(CreateNewPasswordView()),
-                  )
+              return  RefreshIndicator(
+                onRefresh: cubit.editProfileCaptain,
+                backgroundColor: kPrimaryColor,
+                color: kWhiteColor,
+                displacement: 50.0,
+                strokeWidth: 3.0,
+                edgeOffset: 0.0,
+                child: ListView(
+                  children: [
+                    InputFormField(
+                      hint: '  الاسم الاول',
+                      fillColor: kGreyColor,
+                      verticalMargin: 5,
+                      controller:cubit.firstNameController,
+                      validator: Validator.name,
+                    ),
+                    InputFormField(
+                      hint: '  الاسم الأخير',
+                      fillColor: kGreyColor,
+                      verticalMargin: 5,
+                      controller:cubit.lastNameController,
+                      validator: Validator.name,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: Text('معلومات المركبة',style: TextStyle(fontSize: 20,color: kPrimaryColor),),
+                    ),
+                    InputFormField(
+                      hint: cubit.captainInfoModel?.captainInfo![0].categoryName.toString(),
+                      fillColor: kGreyColor,
+                      verticalMargin: 5,
+                      disabled: true,
+                      validator: Validator.name,
+                    ),
+                    InputFormField(
+                      hint: cubit.captainInfoModel?.captainInfo![0].vehicleModel.toString(),
+                      fillColor: kGreyColor,
+                      verticalMargin: 5,
+                      // controller:cubit.vehicleType,
+                      disabled: true,
+                      validator: Validator.name,
+                    ),
+                    InputFormField(
+                      hint: cubit.captainInfoModel?.captainInfo![0].vehicleType.toString(),
+                      fillColor: kGreyColor,
+                      verticalMargin: 5,
+                      // controller:cubit.vehicleType,
+                      validator: Validator.name,
+                      disabled: true,
+                    ),
+                    InputFormField(
+                      hint: cubit.captainInfoModel?.captainInfo![0].vehicleNumber.toString(),
+                      fillColor: kGreyColor,
+                      verticalMargin: 5,
+                      // controller:cubit.vehicleType,
+                      disabled: true,
+                      validator: Validator.name,
+                    ),
+                    InputFormField(
+                      hint: cubit.captainInfoModel?.captainInfo![0].vehicleYear.toString(),
+                      fillColor: kGreyColor,
+                      verticalMargin: 5,
+                      // controller:cubit.vehicleType,
+                      disabled: true,
+                      validator: Validator.name,
+                    ),
 
+                    ConfirmButton(
+                      verticalMargin: 30,
+                      color: kPrimaryColor,
+                      title: 'تغيير كلمة المرور',
+                      onPressed:()=>RouteManager.navigateTo(CreateNewPasswordView()),
+                    )
 
-                ],
+                  ],
+                ),
               );
             },
           ),

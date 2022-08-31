@@ -13,10 +13,9 @@ void main() async {
   DioHelper.init();
   await AppStorage.init();
   // getUserAndCache(321, 1);
-  // getUserAndCache(317, 2);
+  getUserAndCache(317, 2);
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override

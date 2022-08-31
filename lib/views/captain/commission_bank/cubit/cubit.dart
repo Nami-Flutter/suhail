@@ -64,13 +64,13 @@ class BankCubit extends Cubit<BankStates>{
       'sender_name' : senderName,
       'sending_bank' : sendingBank ,
       'receiving_bank' : receivingBank ,
-      'receipt_photo' : '' ,
     };
     final formData = FormData.fromMap(data);
     for (int i = 0; i < imageFileList.length; i++) {
       formData.files.add(MapEntry('receipt_photo[${i}]', await MultipartFile.fromFile(imageFileList[i].path)));
     }
     return formData;
+
   }
 
   void selectImages() async {
@@ -87,4 +87,11 @@ class BankCubit extends Cubit<BankStates>{
     }
     emit((BankInitStates()));
   }
+
+
+
+  bool TransferValidate() {
+    return imageFileList.isNotEmpty;
+  }
+
 }

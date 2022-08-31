@@ -87,7 +87,7 @@ class AddTripCubit extends Cubit<AddTripStates> {
       'trip_receipt_lat': sourceLat,
       'trip_delivery_long': destinationLng,
       'trip_delivery_lat': destinationLat,
-      'trip_time': time,
+      'trip_category': tripCategory,
     });
     costValue = response.data['cost'].toString();
     emit(AddTripInitState());
@@ -121,7 +121,7 @@ class AddTripCubit extends Cubit<AddTripStates> {
       'trip_cost': costValue,
       'trip_date': dateTime,
       'trip_time': time,
-      'trip_details': detailsController,
+      'trip_details': detailsController.text,
     };
     final formData = FormData.fromMap(data);
     for (int i = 0; i < imageFileList.length; i++) {

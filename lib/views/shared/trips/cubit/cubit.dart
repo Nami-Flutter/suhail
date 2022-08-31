@@ -70,8 +70,9 @@ class TripsCubit extends Cubit<TripsStates> {
     emit(TripsInitState());
   }
 
-  Future<void> getNearestTrip() async {
-    getNearestTrips = !getNearestTrips;
+  Future<void> getNearestTrip([int? maxLimit]) async {
+    if (maxLimit == null)
+     getNearestTrips = !getNearestTrips;
     LocationManager.initLocationStream();
     emit(TripsLoadingState());
     if(AppStorage.customerGroup == 2)
@@ -79,7 +80,7 @@ class TripsCubit extends Cubit<TripsStates> {
         final response = await DioHelper.post('captain/location/get_nearest_trips',
             data: {
               "captain_id" : AppStorage.customerID,
-              "max_limit" : getNearestTrips ? 0 : 1,
+              "max_limit" : maxLimit ?? (getNearestTrips ? 0 : 1),
             },);
         nearestTripModel = NearestTripModel.fromJson(response.data);
       } catch (e) {

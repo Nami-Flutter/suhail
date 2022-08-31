@@ -5,10 +5,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soheel_app/constants.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/core/router/router.dart';
+import 'package:soheel_app/views/shared/trip_details/cubit/cubit.dart';
 import 'package:soheel_app/views/shared/trip_details/view.dart';
 import 'package:soheel_app/views/shared/trips/cubit/cubit.dart';
 import 'package:soheel_app/views/shared/trips/cubit/states.dart';
 import 'package:soheel_app/views/user/home/view.dart';
+import 'package:soheel_app/widgets/app/empty.dart';
 import 'package:soheel_app/widgets/app/loading.dart';
 import 'package:soheel_app/widgets/confirm_button.dart';
 import 'package:soheel_app/widgets/drawer.dart';
@@ -65,21 +67,21 @@ class _TripsViewState extends State<TripsView> {
                             text: 'الرحلات المعلقة',
                           ),
                           Tab(
-                            text: 'الرحلات السابقة',
+                            text: 'الرحلات النشطة',
                           ),
                           Tab(
-                            text: 'الرحلات النشطة',
+                            text: 'الرحلات السابقة',
                           ),
                         ],
                       ) : TabBar(
-                        labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                        labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
                         indicator: BoxDecoration(color: kPrimaryColor, borderRadius: BorderRadius.circular(10)),
                         tabs: [
                           Tab(
-                            text: 'الرحلات السابقة',
+                            text: 'الرحلات النشطة',
                           ),
                           Tab(
-                            text: 'الرحلات النشطة',
+                            text: 'الرحلات السابقة',
                           ),
                         ],
                       ),
@@ -88,70 +90,98 @@ class _TripsViewState extends State<TripsView> {
                       child:AppStorage.customerGroup == 2 ?  TabBarView(
                         children: [
                           nearestTripsData == null || nearestTripsData.isEmpty ?
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                          Stack(
                             children: [
-                              Text('لا توجد رحلات', style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-                              ConfirmButton(
-                                horizontalMargin: 20,
-                                verticalMargin: 10,
-                                title: cubit.getNearestTrips ? 'بحث في نطاق اوسع' : 'بحث في نطاق اضيق',
-                                onPressed: cubit.getNearestTrip,
-                              ),
+                              Empty(),
+                              Positioned(
+                                bottom: 20,
+                                left: 20,
+                                child: CircleAvatar(
+                                  maxRadius: 30,
+                                  backgroundColor: kPrimaryColor,
+                                  child:IconButton(
+                                    onPressed: () => showSearchArea(cubit),
+                                    icon:Icon(FontAwesomeIcons.search,color: kWhiteColor,),
+                                  ),
+                                ),
+                              )
+                              // ConfirmButton(
+                              //   horizontalMargin: 20,
+                              //   verticalMargin: 10,
+                              //   title: cubit.getNearestTrips ? 'بحث في نطاق اوسع' : 'بحث في نطاق اضيق',
+                              //   onPressed: cubit.getNearestTrip,
+                              // ),
                             ],
                           ) :
+                          Column(
+                            children: [
+                              ListView.builder(
+                                shrinkWrap: true,
+                                  itemBuilder: (context, index) {
+                                     return TripCard(
+                                      image: 'assets/images/truck-1.png',
+                                      status: nearestTripsData[index].name.toString(),
+                                      truckType:nearestTripsData[index].cost.toString(),
+                                      onTap: () => RouteManager.navigateTo(
+                                        TripDetailsView(tripId: nearestTripsData[index].tripId.toString(),),),
+                                    );
+                                  },
+                                  itemCount: nearestTripsData.length
+                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                              //   child: Row(
+                              //     children: [
+                              //       Expanded(
+                              //         child: MaterialButton(
+                              //           child: Text('تفاصيل الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
+                              //           onPressed: (){},
+                              //           padding: EdgeInsets.all(10),
+                              //           color: kPrimaryColor,
+                              //
+                              //         ),
+                              //       ),
+                              //       SizedBox(width: 10,),
+                              //       Expanded(
+                              //         child: MaterialButton(
+                              //           child: Text('قبول الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
+                              //           onPressed:(){},
+                              //           padding: EdgeInsets.all(10),
+                              //           color: kPrimaryColor,
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // )
+                            ],
+                          ),
+                          currentTripsData == null || currentTripsData.isEmpty ? Center(
+                            child:Empty(),
+                          ):
                           RefreshIndicator(
-                            onRefresh: TripsCubit.of(context).getNearestTrip,
+                            onRefresh: TripsCubit.of(context).getCurrentTrips,
                             backgroundColor: kPrimaryColor,
                             color: kWhiteColor,
                             displacement: 50.0,
                             strokeWidth: 3.0,
                             edgeOffset: 0.0,
-                            child: Column(
-                              children: [
-                                ListView.builder(
-                                    itemBuilder: (context, index) {
-                                       return TripCard(
-                                        image: 'assets/images/truck-1.png',
-                                        status: nearestTripsData[index].name.toString(),
-                                        truckType:nearestTripsData[index].cost.toString(),
-                                        onTap: () => RouteManager.navigateTo(
-                                          TripDetailsView(tripId: nearestTripsData[index].tripId.toString(),),),
-                                      );
-                                    },
-                                    itemCount: nearestTripsData.length
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: MaterialButton(
-                                          child: Text('تفاصيل الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
-                                          onPressed: (){},
-                                          padding: EdgeInsets.all(10),
-                                          color: kPrimaryColor,
-
-                                        ),
-                                      ),
-                                      SizedBox(width: 10,),
-                                      Expanded(
-                                        child: MaterialButton(
-                                          child: Text('قبول الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
-                                          onPressed: (){},
-                                          padding: EdgeInsets.all(10),
-                                          color: kPrimaryColor,
-                                        ),
-                                      ),
-
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
+                            child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return currentTripsData == null ?  Empty() :
+                                  TripCard(
+                                    image: 'assets/images/truck-1.png',
+                                    status:currentTripsData[index].name.toString(),
+                                    truckType: currentTripsData[index].cost.toString(),
+                                    onTap: () => RouteManager.navigateTo(TripDetailsView(
+                                        tripId: currentTripsData[index].tripId.toString()
+                                    ),
+                                    ),
+                                  );
+                                },
+                                itemCount: currentTripsData.length),
                           ),
                           finishTripsData == null || finishTripsData.isEmpty ? Center(
-                            child: Text('لا توجد رحلات',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
+                            child: Empty(),
                           ):
                           RefreshIndicator(
                             onRefresh: TripsCubit.of(context).getFinishTrips,
@@ -176,70 +206,61 @@ class _TripsViewState extends State<TripsView> {
                                 },
                                 itemCount: finishTripsData.length),
                           ),
-                          currentTripsData == null || currentTripsData.isEmpty ? Center(
-                            child: Text('لا توجد رحلات',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
-                          ):
+                        ],
+                      ) :
+                      TabBarView(
+                        children: [
+                          currentUserTripsData == null || currentUserTripsData.isEmpty ?  Empty() :
                           RefreshIndicator(
-                            onRefresh: TripsCubit.of(context).getCurrentTrips,
+                            onRefresh: TripsCubit.of(context).getUserTrips,
                             backgroundColor: kPrimaryColor,
                             color: kWhiteColor,
                             displacement: 50.0,
                             strokeWidth: 3.0,
                             edgeOffset: 0.0,
                             child: ListView.builder(
-                                itemBuilder: (context, index) {
-                                  return currentTripsData == null ? Text('لا توجد رحلات') :
-                                   TripCard(
-                                   image: 'assets/images/truck-1.png',
-                                   status:currentTripsData[index].name.toString(),
-                                   truckType: currentTripsData[index].cost.toString(),
-                                   onTap: () => RouteManager.navigateTo(TripDetailsView(
-                                       tripId: currentTripsData[index].tripId.toString()
-                                   ),
-                                   ),
-                                   );
-                                },
-                                itemCount: currentTripsData.length),
-                          ),
-                        ],
-                      ) :
-                      TabBarView(
-                        children: [
-                          finishUserTripsData == null || finishUserTripsData.isEmpty ? Center(child: Text('لا توجد رحلات'),) :
-                          ListView.builder(
-                            itemBuilder: (context, index) {
-                              return TripCard(
-                                image:
-                                'assets/images/truck-1.png',
-                                status:
-                                finishUserTripsData[index].name.toString(),
-                                truckType: finishUserTripsData[index].cost.toString(),
-                                onTap: () =>
-                                    RouteManager.navigateTo(
-                                      TripDetailsView(
-                                        tripId: finishUserTripsData[index].tripId,
+                              itemBuilder: (context, index) {
+                                return TripCard(
+                                  image: 'assets/images/truck-1.png',
+                                  status: currentUserTripsData[index].name.toString(),
+                                  truckType: currentUserTripsData[index].cost.toString(),
+                                  onTap: () =>
+                                      RouteManager.navigateTo(
+                                        TripDetailsView(
+                                          tripId: currentUserTripsData[index].tripId,
+                                        ),
                                       ),
-                                    ),
-                              );
-                            },
-                            itemCount: finishUserTripsData.length,
+                                );
+                              },
+                              itemCount:currentUserTripsData.length,
+                            ),
                           ),
-                          currentUserTripsData == null || currentUserTripsData.isEmpty ? Center(child: Text('لا توجد رحلات'),) :
-                          ListView.builder(
-                            itemBuilder: (context, index) {
-                              return TripCard(
-                                image: 'assets/images/truck-1.png',
-                                status: currentUserTripsData[index].name.toString(),
-                                truckType: currentUserTripsData[index].cost.toString(),
-                                onTap: () =>
-                                    RouteManager.navigateTo(
-                                      TripDetailsView(
-                                        tripId: currentUserTripsData[index].tripId,
+                          finishUserTripsData == null || finishUserTripsData.isEmpty ? Empty() :
+                          RefreshIndicator(
+                            onRefresh: TripsCubit.of(context).getUserTrips,
+                            backgroundColor: kPrimaryColor,
+                            color: kWhiteColor,
+                            displacement: 50.0,
+                            strokeWidth: 3.0,
+                            edgeOffset: 0.0,
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return TripCard(
+                                  image:
+                                  'assets/images/truck-1.png',
+                                  status:
+                                  finishUserTripsData[index].name.toString(),
+                                  truckType: finishUserTripsData[index].cost.toString(),
+                                  onTap: () =>
+                                      RouteManager.navigateTo(
+                                        TripDetailsView(
+                                          tripId: finishUserTripsData[index].tripId,
+                                        ),
                                       ),
-                                    ),
-                              );
-                            },
-                            itemCount:currentUserTripsData.length,
+                                );
+                              },
+                              itemCount: finishUserTripsData.length,
+                            ),
                           ),
                         ],
                       ),
@@ -252,4 +273,47 @@ class _TripsViewState extends State<TripsView> {
       ),
     );
   }
+
+
+
+  Future showSearchArea(TripsCubit cubit){
+    return showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('ابحث في ',style: TextStyle(fontSize: 22,fontWeight: FontWeight.w700),),
+              SizedBox(height: 20,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MaterialButton(
+                    onPressed: () {
+                      cubit.getNearestTrip(0);
+                      RouteManager.pop();
+                    },
+                    padding: EdgeInsets.all(8),
+                    child: Text('نطاقي',style: TextStyle(fontWeight: FontWeight.w700,color: kWhiteColor),),
+                    color: kPrimaryColor,
+                  ),
+                  MaterialButton(
+                    onPressed: () {
+                      cubit.getNearestTrip(1);
+                      RouteManager.pop();
+                    },
+                    padding: EdgeInsets.all(8),
+                    child: Text('نطاق أوسع',style: TextStyle(fontWeight: FontWeight.w700,color: kWhiteColor),),
+                    color: kPrimaryColor,
+                  ),
+                ],
+              )
+            ],
+          ),
+        ));
+  }
+
+
+
 }
