@@ -9,9 +9,11 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:soheel_app/constants.dart';
 import 'package:soheel_app/core/location/location_manager.dart';
 import 'package:soheel_app/core/router/router.dart';
+import 'package:soheel_app/views/user/search_location/view.dart';
 import 'package:soheel_app/widgets/app/loading.dart';
 import 'package:soheel_app/widgets/app_bar.dart';
 import 'package:soheel_app/widgets/confirm_button.dart';
+import 'package:soheel_app/widgets/text_form_field.dart';
 
 class PickedLocation extends StatefulWidget {
   const PickedLocation({Key? key,required this.appTitle, required this.onConfirm}) : super(key: key);
@@ -29,6 +31,7 @@ class _PickedLocationState extends State<PickedLocation> {
   // var myMarkers = HashSet<Marker>();
   BitmapDescriptor? customMarker;
   Set<Marker> myMarkers = {};
+  late GoogleMapController googleMapController;
 
   @override
   void initState() {
@@ -54,8 +57,10 @@ class _PickedLocationState extends State<PickedLocation> {
           GoogleMap(
             initialCameraPosition: cameraPosition!,
             mapType: MapType.normal,
-            myLocationButtonEnabled: true,
+            myLocationButtonEnabled: false,
             myLocationEnabled: true,
+            zoomControlsEnabled: false,
+            onMapCreated: (controller) => googleMapController = controller,
             onTap: (LatLng latLng) async {
               Marker m = Marker(
                   infoWindow: InfoWindow(title: 'Here',snippet: 'You Are Here Now'),
@@ -71,14 +76,38 @@ class _PickedLocationState extends State<PickedLocation> {
             markers: myMarkers,
           ),
           Positioned(
+            top: 20,
+            left: 20,
+            right: 20,
+            child: InputFormField(
+              hint: "بحث",
+              fillColor: kWhiteColor,
+              icon: Icons.search,
+              onTap: () {
+                RouteManager.navigateTo(SearchLocationView(
+                  onSelect: (latLng) async {
+                    cityName = await LocationManager.getCityByLatLng(latitude: latLng.latitude, longitude: latLng.longitude);
+                    Marker m = Marker(
+                      infoWindow: InfoWindow(title: 'Here',snippet: 'You Are Here Now'),
+                      markerId: MarkerId('1'),
+                      position:latLng,
+                    );
+                    googleMapController.animateCamera(CameraUpdate.newLatLng(latLng));
+                    myMarkers.add(m);
+                    setState(() {});
+                  },
+                ));
+              },
+            ),
+          ),
+          Positioned(
             bottom: 20,
-            right:10,
-            left: 10,
+            right:20,
+            left: 20,
             child: Column(
               children: [
                 Container(
                     padding: EdgeInsets.all(15),
-                    margin: EdgeInsets.symmetric(vertical: 5,horizontal: 30),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: kWhiteColor
@@ -99,6 +128,7 @@ class _PickedLocationState extends State<PickedLocation> {
                     )
                 ),
                 ConfirmButton(
+                  verticalMargin: 20,
                   color: kPrimaryColor,
                   onPressed: (){
                     if (myMarkers.isNotEmpty) {
@@ -107,7 +137,6 @@ class _PickedLocationState extends State<PickedLocation> {
                       RouteManager.pop();
                     }
                   },
-                  horizontalMargin: 30,
                   title: 'تأكيد',
                 )
               ],
