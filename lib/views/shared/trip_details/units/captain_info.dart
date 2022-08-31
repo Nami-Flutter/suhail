@@ -95,9 +95,7 @@ class CaptainInfo extends StatelessWidget {
                         size: 10,
                         color: kPrimaryColor,
                       ),
-                      onRatingUpdate: (rating) {
-                        print(rating);
-                      },
+                      onRatingUpdate: (rating) {},
                     );
                   },
                 ),

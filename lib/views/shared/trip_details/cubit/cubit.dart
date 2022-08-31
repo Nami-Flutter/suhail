@@ -151,11 +151,6 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
             "rating" : rating,
           });
       final data = response.data;
-      print({
-        "trip_id": tripId,
-        "captain_id" : AppStorage.customerID,
-        "rating" : rating,
-      });
       if (data.containsKey('success') == true){
         showSnackBar('تم التقييم بنجاح');
       }

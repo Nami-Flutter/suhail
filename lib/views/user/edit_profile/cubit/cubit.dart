@@ -40,10 +40,6 @@ class EditProfileCubit extends Cubit<EditProfileStates>{
       final data = response.data;
       if(data.containsKey('success'))
       {
-        print(AppStorage.getUserModel()?.customerId);
-        print(AppStorage.getUserModel()?.firstname);
-        print(AppStorage.getUserModel()?.lastname);
-        print(AppStorage.getUserModel()?.telephone);
 
         showSnackBar(data['success']);
         getUserAndCache(AppStorage.customerID , AppStorage.customerGroup);

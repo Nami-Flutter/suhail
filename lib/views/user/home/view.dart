@@ -6,6 +6,7 @@ import 'package:soheel_app/widgets/app/loading.dart';
 import 'package:soheel_app/widgets/app_bar.dart';
 import 'package:soheel_app/widgets/drawer.dart';
 import '../../../core/app_storage/app_storage.dart';
+import '../../../core/permission_manager/permissions_section.dart';
 import '../requset_trip/view.dart';
 import 'cubit/cubit.dart';
 import 'cubit/states.dart';
@@ -30,6 +31,10 @@ class HomeView extends StatelessWidget {
             return state is CategoryLoadingState ? Loading() :  Column(
               children: [
                 Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  child: AppPermissionsSections(),
+                ),
+                Padding(
                   padding: const EdgeInsets.symmetric(vertical: 15,horizontal: 20),
                   child: Align(
                       alignment: Alignment.centerRight,
@@ -49,9 +54,8 @@ class HomeView extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(10.0) ),
                           padding: EdgeInsets.all(0),
                           onPressed: (){
-                            print(categoryData!.mainCategories![index].categoryId.toString(),);
                             RouteManager.navigateTo(RequestTripView(
-                              appBarTitle: categoryData.mainCategories![index].name.toString(),
+                              appBarTitle: categoryData!.mainCategories![index].name.toString(),
                               tripCategory:categoryData.mainCategories![index].categoryId.toString(),
                             ),
                             );

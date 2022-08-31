@@ -153,7 +153,6 @@ class AddTripCubit extends Cubit<AddTripStates> {
           data: {});
       final data = response.data;
       time_limit = data['time_limit'];
-      print(int.parse(data["time_limit"].toString()) * 60);
     } catch (e, s) {
       print(e);
       print(s);

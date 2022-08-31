@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soheel_app/views/captain/wallet/view.dart';
 import 'package:soheel_app/views/shared/trip_details/view.dart';
 import 'package:soheel_app/views/shared/trips/view.dart';
 
@@ -9,7 +10,12 @@ import '../router/router.dart';
 
 bool _isNotificationDialogVisible = false;
 
-showNotificationDialog({required String title, required String body}) {
+showNotificationDialog({
+  required String title,
+  required String body,
+  required String type,
+  required String? tripID,
+}) {
   if (_isNotificationDialogVisible) {
     RouteManager.pop();
   }
@@ -17,13 +23,14 @@ showNotificationDialog({required String title, required String body}) {
   showCupertinoDialog(
     context: RouteManager.currentContext,
     barrierDismissible: false,
-    builder: (context) => _Dialog(title, body),
+    builder: (context) => _Dialog(title, body, type, tripID),
   );
 }
 
 class _Dialog extends StatelessWidget {
-  final String title, body;
-  _Dialog(this.title,this.body);
+  final String title, body, type;
+  final String? tripID;
+  _Dialog(this.title,this.body, this.type, this.tripID);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,8 +66,11 @@ class _Dialog extends StatelessWidget {
               ),
               onPressed: () {
                 _isNotificationDialogVisible = false;
-                RouteManager.navigateAndPopUntilFirstPage(TripsView());
-                // RouteManager.navigateAndPopUntilFirstPage(TripDetailsView(tripId: orderID));
+                if (type == 'wallet') {
+                  RouteManager.navigateAndPopUntilFirstPage(WalletView());
+                } else {
+                  RouteManager.navigateAndPopUntilFirstPage(tripID == null ? TripsView() : TripDetailsView(tripId: tripID));
+                }
               },
             ),
           ],

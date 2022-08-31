@@ -67,11 +67,6 @@ class LocationManager {
       if (latLng == null)
         position = await getLocationFromDevice();
       currentLocationFromServer = LatLng(position?.latitude ?? latLng!.latitude, position?.longitude ?? latLng!.longitude);
-      print({
-        "captain_id" : AppStorage.customerID,
-        "location_long" : latLng?.longitude ?? currentLocationFromServer!.longitude,
-        "location_lat" : latLng?.latitude ?? currentLocationFromServer!.latitude,
-      });
 
       final response = await DioHelper.post(
         'captain/location/set_location',

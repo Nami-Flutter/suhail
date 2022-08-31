@@ -36,7 +36,6 @@ class LoginCubit extends Cubit<LoginStates>{
               "password" : password,
             });
         final data = response.data;
-        print(data);
         if(data['message'] != null)
         {
           showSnackBar(data['message']);
@@ -63,7 +62,6 @@ class LoginCubit extends Cubit<LoginStates>{
               "password" : password,
             });
         final data = response.data;
-        print(data);
         if(data['message'] != null)
         {
           showSnackBar(data['message']);

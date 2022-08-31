@@ -57,7 +57,6 @@ class _PickedLocationState extends State<PickedLocation> {
             myLocationButtonEnabled: true,
             myLocationEnabled: true,
             onTap: (LatLng latLng) async {
-              print('Your Latlng is $latLng');
               Marker m = Marker(
                   infoWindow: InfoWindow(title: 'Here',snippet: 'You Are Here Now'),
                   markerId: MarkerId('1'),

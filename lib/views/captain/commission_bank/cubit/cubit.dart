@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/core/dio_manager/dio_manager.dart';
+import 'package:soheel_app/core/media_manager/media_manager.dart';
 import 'package:soheel_app/views/captain/commission_bank/cubit/states.dart';
 import 'package:soheel_app/views/captain/commission_bank/model.dart';
 import 'package:soheel_app/views/user/requset_trip/cubit/states.dart';
@@ -19,7 +20,7 @@ class BankCubit extends Cubit<BankStates>{
   BankModel? bankModel;
 
   String? senderName, sendingBank , receivingBank , receiptPhoto;
-  List<File> imageFileList = [];
+  File? receipetImage;
   final formKey = GlobalKey<FormState>();
 
   Future<void> getBanks () async{
@@ -38,7 +39,7 @@ class BankCubit extends Cubit<BankStates>{
 
 
   Future<void> transferAccountBank () async{
-    if (!formKey.currentState!.validate()) return;
+    if (!formKey.currentState!.validate() || receipetImage == null) return;
     formKey.currentState!.save();
     emit(BankLoadingStates());
     try{
@@ -66,26 +67,17 @@ class BankCubit extends Cubit<BankStates>{
       'receiving_bank' : receivingBank ,
     };
     final formData = FormData.fromMap(data);
-    for (int i = 0; i < imageFileList.length; i++) {
-      formData.files.add(MapEntry('receipt_photo[${i}]', await MultipartFile.fromFile(imageFileList[i].path)));
-    }
+    formData.files.add(MapEntry('receipt_photo', await MultipartFile.fromFile(receipetImage!.path)));
     return formData;
 
   }
 
   void selectImages() async {
-    final selectedImages = await ImagePicker().pickMultiImage();
-    if (selectedImages != null) {
-      int length = selectedImages.length;
-      if (length > (2 - imageFileList.length)) {
-        length = 2 - imageFileList.length;
-        showSnackBar('عفوا اقصي عدد للصور 2');
-      }
-      for (int i = 0; i < length; i++) {
-        imageFileList.add(File(selectedImages[i].path));
-      }
+    final file = await MediaManager.showImageDialog();
+    if (file != null) {
+      receipetImage = file;
+      emit((BankInitStates()));
     }
-    emit((BankInitStates()));
   }
 
 

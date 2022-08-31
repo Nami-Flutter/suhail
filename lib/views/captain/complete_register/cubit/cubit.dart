@@ -100,7 +100,6 @@ class CCompleteRegisterCubit extends Cubit<CCompleteRegisterStates> {
     for (int i = 0; i < vehicleLicensesImages.length; i++) {
       formData.files.add(MapEntry('licenses[${i}]', await MultipartFile.fromFile(vehicleLicensesImages[i].path)));
     }
-    print(formData.files);
     return formData;
   }
 

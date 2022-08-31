@@ -25,6 +25,8 @@ class FirebaseMessagingHelper {
       showNotificationDialog(
         title: event.notification?.title ?? '',
         body: event.notification?.body ?? '',
+        tripID: event.data['trip_id'],
+        type: event.data['type'],
       );
     });
   }
@@ -40,6 +42,12 @@ class FirebaseMessagingHelper {
     if (notification == null) {
       return;
     }
+    showNotificationDialog(
+      title: notification.notification?.title ?? '',
+      body: notification.notification?.body ?? '',
+      tripID: notification.data['trip_id'],
+      type: notification.data['type'],
+    );
     // RouteManager.navigateAndPopUntilFirstPage(TamidDetailsView(title: notification.notification?.title ?? '', id: notification.data['tamid_id']));
   }
 
