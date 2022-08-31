@@ -23,7 +23,7 @@ class MessageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: isMe ? Alignment.topLeft : Alignment.topRight,
+      alignment: !isMe ? Alignment.topLeft : Alignment.topRight,
       child: UnconstrainedBox(
         child: ConstrainedBox(
           constraints: BoxConstraints(

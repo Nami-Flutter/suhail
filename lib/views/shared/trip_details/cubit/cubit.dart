@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/core/location/location_manager.dart';
 import 'package:soheel_app/core/router/router.dart';
+import 'package:soheel_app/views/captain/wallet/view.dart';
 import 'package:soheel_app/views/shared/trip_details/cubit/states.dart';
 import 'package:soheel_app/views/shared/trip_details/model.dart';
 import 'package:soheel_app/views/shared/trips/cubit/states.dart';
@@ -104,10 +105,10 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
       final data = response.data;
       if (data['success'] == true){
         showSnackBar('تم انهاء الرحله بنجاح');
-        RouteManager.navigateAndPopAll(TripsView());
+        RouteManager.navigateAndPopUntilFirstPage(WalletView());
       }
       else{
-        showSnackBar('حدث خطأ');
+        showSnackBar('حدث خطأ', errorMessage: true);
 
       }
     } catch (e) {
@@ -172,45 +173,3 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
 
 
 }
-
-
-/*
-
-
-        "trip_delivery_long": "46.70936712158202",
-        "trip_delivery_lat": "24.65410124229380",
-        "trip_delivery_address": "جدة, السعودية",
-        "trip_cost": "20 ريال",
-        "trip_date": "2020-12-16",
-        "trip_time": "19:30:10",
-        "trip_details": "نص تعليق على الرحلة",
-        "trip_distance": 11,
-        "trip_images": [],
-        "trip_status": "2",
-        "payment_flag": 0,
-        "payment_method": ""
-
-{
-        "trip_id": "148",
-        "customer_id": "258",
-        "customer_name": "aliii test",
-        "customer_telephone": "0510203040",
-        "trip_category": "168",
-        "trip_receipt_long": "46.8127072705078",
-        "trip_receipt_lat": "24.680308703868064",
-        "trip_receipt_address": "الرياض, السعودية",
-        "trip_delivery_long": "46.70936712158202",
-        "trip_delivery_lat": "24.65410124229380",
-        "trip_delivery_address": "جدة, السعودية",
-        "trip_cost": "20 ريال",
-        "trip_date": "2020-12-16",
-        "trip_time": "19:30:10",
-        "trip_details": "نص تعليق على الرحلة",
-        "trip_distance": 11,
-        "trip_images": [],
-        "trip_status": "2",
-        "payment_flag": 0,
-        "payment_method": ""
-    },
-
- */

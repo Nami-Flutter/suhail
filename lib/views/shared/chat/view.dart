@@ -8,6 +8,7 @@ import 'package:soheel_app/views/shared/chat/units/field_section.dart';
 import 'package:soheel_app/widgets/app/loading.dart';
 import 'package:soheel_app/widgets/app/message_bubble.dart';
 import 'package:soheel_app/widgets/app_bar.dart';
+import 'package:soheel_app/widgets/my_text.dart';
 import 'package:soheel_app/widgets/text_form_field.dart';
 
 class ChatView extends StatelessWidget {
@@ -22,7 +23,19 @@ class ChatView extends StatelessWidget {
     return BlocProvider(
       create: (context) => ChatCubit(tripID: tripID, receiverID: receiverID)..getChat(),
       child: Scaffold(
-        appBar: appBar(title: title),
+        appBar: appBar(
+          title: title,
+          actions: [
+            Builder(
+              builder: (context) {
+                return IconButton(
+                  onPressed: () => ChatCubit.of(context).getChat(false),
+                  icon: Icon(Icons.refresh),
+                );
+              }
+            ),
+          ]
+        ),
         body: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
           child: BlocBuilder<ChatCubit, ChatStates>(
@@ -35,7 +48,7 @@ class ChatView extends StatelessWidget {
               return Column(
                 children: [
                   Expanded(
-                    child: ListView.builder(
+                    child: messages.isEmpty ? Center(child: MyText(title: "لا توجد رسائل بعد"),) : ListView.builder(
                       reverse: true,
                       itemCount: messages.length,
                       itemBuilder: (context, index) {

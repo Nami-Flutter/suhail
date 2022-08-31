@@ -25,13 +25,6 @@ class WalletView extends StatelessWidget {
               return Center(
                 child: Loading(),
               );
-            } else if (cubit.balance == null) {
-              return Center(
-                child: TextButton(
-                  onPressed: cubit.getWalletBalance,
-                  child: Text('فضل تحميل المحفظة, اعادة المحاولة'),
-                ),
-              );
             } else {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -47,7 +40,7 @@ class WalletView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(cubit.balance == '0' ? '0' : '-${cubit.balance}',style: TextStyle(color: kAccentColor,fontSize: 50),),
+                        Text(cubit.balance == '0' || cubit.balance == null ? '0' : '-${cubit.balance}',style: TextStyle(color: kAccentColor,fontSize: 50),),
                         SizedBox(width: 5),
                         Text('ريال',style: TextStyle(color: kAccentColor,fontSize: 20),),
                       ],
