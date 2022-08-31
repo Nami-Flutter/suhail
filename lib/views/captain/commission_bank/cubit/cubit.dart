@@ -80,10 +80,4 @@ class BankCubit extends Cubit<BankStates>{
     }
   }
 
-
-
-  bool TransferValidate() {
-    return imageFileList.isNotEmpty;
-  }
-
 }
