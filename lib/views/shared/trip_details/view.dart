@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +59,7 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                   child: Column(
                     children: [
                       Expanded(
-                          flex:isCollapsed ? 4 : 1,
+                          flex:isCollapsed ? 1 : 4,
                           child: Stack(
                             children: [
                               MapSection(),
@@ -71,10 +72,13 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                                         isCollapsed = !isCollapsed;
                                       });
                                     },
-                                    icon: Icon(
-                                      !isCollapsed ? Icons.arrow_circle_down : Icons.arrow_circle_up,
-                                      size: 50,
-                                      color: kPrimaryColor,
+                                    icon: Pulse(
+                                      delay: Duration(milliseconds: 300),
+                                      child: Icon(
+                                        !isCollapsed ? Icons.arrow_circle_up :  Icons.arrow_circle_down,
+                                        size: 50,
+                                        color: kAccentColor,
+                                      ),
                                     ),
                                   ))
                             ],

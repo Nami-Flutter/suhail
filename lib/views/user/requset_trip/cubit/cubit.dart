@@ -70,6 +70,12 @@ class AddTripCubit extends Cubit<AddTripStates> {
       if (data.containsKey('success')) {
         showSnackBar('تم اضافة الرحلة بنجاح!');
         openDialog(data['trip_id'].toString());
+        print(
+          {
+            'trip_date': dateTime,
+            'trip_time': time,
+          }
+        );
       } else {
         throw Exception(response.data);
       }

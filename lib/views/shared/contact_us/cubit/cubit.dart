@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/core/dio_manager/dio_manager.dart';
 import 'package:soheel_app/core/router/router.dart';
 import 'package:soheel_app/views/shared/contact_us/cubit/states.dart';
@@ -17,7 +18,7 @@ class ContactUsCubit extends Cubit<ContactUsStates>{
 
   ContactInfoModel? contactInfoModel;
 
-  String? name ,telephone,enquiry;
+  String? enquiry;
   final formKey = GlobalKey<FormState>();
 
 
@@ -29,14 +30,14 @@ class ContactUsCubit extends Cubit<ContactUsStates>{
       final response = await DioHelper.post(
           'contact',
           data: {
-            "name" : name,
-            "telephone" : telephone,
+            "name" : AppStorage.getUserModel()!.firstname,
+            "telephone" :  AppStorage.getUserModel()!.telephone,
             "enquiry" : enquiry,
           });
       final data = response.data;
       contactInfoModel = ContactInfoModel.fromJson(data);
       if(data.containsKey('success')){
-        showSnackBar(data.toString());
+        showSnackBar(data['success']);
         RouteManager.navigateTo(HomeView());
       }
     }catch(e){

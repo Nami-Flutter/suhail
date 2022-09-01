@@ -22,16 +22,11 @@ class VehicleImagesView extends StatelessWidget {
       builder: (_, state) => Scaffold(
         // appBar: appBar(),
         body:Container(
-          padding: EdgeInsets.symmetric(horizontal: 30),
+          padding: EdgeInsets.symmetric(horizontal: 30,vertical: 15),
           width: double.infinity,
           child: ListView(
             children: [
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 50),
-                  child: Logo(heightFraction: 4),
-                ),),
+              Logo(heightFraction: 6),
               SizedBox(height: 30,),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5),
@@ -43,7 +38,7 @@ class VehicleImagesView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('ارفع صور المركبة',style: Theme.of(context).textTheme.headline5!.copyWith(color: kAccentColor),),
-                      Text('ارفق صور المركبه  لا يقل عن 2 صور',style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kBlueColor),),
+                      Text('ارفق صور المركبة  لا يقل عن 2 صور',style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kBlueColor),),
                     ],
                   )
               ),
@@ -63,7 +58,7 @@ class VehicleImagesView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('ارفع الهوية الوطنية أو الاقامة ',style: Theme.of(context).textTheme.headline5!.copyWith(color: kAccentColor),),
-                      Text('ارفق صور الهوية الوطنية أو الاقامة  الوجه والظهر  ',style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kBlueColor),),
+                      Text('ارفق صور الهوية الوطنية أو الاقامة  الوجة والظهر  ',style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kBlueColor),),
                     ],
                   )
               ),
@@ -82,8 +77,8 @@ class VehicleImagesView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('ارفع رخصه المركبه',style: Theme.of(context).textTheme.headline5!.copyWith(color: kAccentColor),),
-                      Text('ارفق صور رخصة المركبة الوجه والظهر  ',style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kBlueColor),),
+                      Text('ارفع رخصة المركبة',style: Theme.of(context).textTheme.headline5!.copyWith(color: kAccentColor),),
+                      Text('ارفق صور رخصة المركبة الوجه والظهر',style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kBlueColor),),
                     ],
                   )
               ),
@@ -100,7 +95,7 @@ class VehicleImagesView extends StatelessWidget {
               (state is CCompleteRegisterLoadingStates) ? Loading() : ConfirmButton(
                 color: kAccentColor,
                 horizontalMargin: 10,
-                verticalMargin: 10,
+                verticalMargin: 20,
                 title: 'اتمام التسجيل',
                 onPressed: (){
                   if (cubit.validateVehicleImages()) {

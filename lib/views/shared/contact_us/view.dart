@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soheel_app/constants.dart';
+import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/core/validator/validation.dart';
 import 'package:soheel_app/views/shared/contact_us/cubit/cubit.dart';
 import 'package:soheel_app/views/shared/contact_us/cubit/states.dart';
@@ -33,8 +34,8 @@ class ContactUsView extends StatelessWidget {
             final contactData = cubit.contactInfoModel;
             if(contactData == null){
               return Loading();
-            }
-            return contactData == null ? Center(child: Empty()):  RefreshIndicator(
+            }else return
+            RefreshIndicator(
               onRefresh: ContactUsCubit.of(context).getContactData,
               backgroundColor: kPrimaryColor,
               color: kWhiteColor,
@@ -59,7 +60,7 @@ class ContactUsView extends StatelessWidget {
                     child: Container(
                       padding: EdgeInsets.all(8),
                       margin: EdgeInsets.symmetric(horizontal: 20),
-                      child: Center(child: Text(contactData.telephone!,style: TextStyle(color: kDarkGreyColor,fontSize: 22),)),
+                      child: Center(child: Text(contactData.telephone.toString(),style: TextStyle(color: kDarkGreyColor,fontSize: 22),)),
                       decoration: BoxDecoration(
                           border: Border.all(
                               color: kDarkGreyColor
@@ -84,7 +85,8 @@ class ContactUsView extends StatelessWidget {
                           height: 1,
                           width: 150,
                           color: kPrimaryColor,
-                        ),            ],
+                        ),
+                      ],
                     ),
                   ),
                   Form(
@@ -92,21 +94,20 @@ class ContactUsView extends StatelessWidget {
                     child: Column(
                       children: [
                         InputFormField(
-                          hint: 'الاسم',
-                          fillColor: kWhiteColor,
+                          hint:AppStorage.getUserModel()!.firstname.toString(),
+                          fillColor: kGreyColor,
                           horizontalMargin: 20,
-                          validator: Validator.name,
                           verticalMargin: 5,
-                          onSave: (v)=> cubit.name = v,
+                          disabled: true,
+
                         ),
                         InputFormField(
-                          hint: '  رقم الجوال',
-                          fillColor: kWhiteColor,
+                          hint:AppStorage.getUserModel()!.telephone.toString(),
+                          fillColor: kGreyColor,
+                          disabled: true,
                           horizontalMargin: 20,
                           verticalMargin: 5,
-                          validator: Validator.phoneNumber,
                           maxLength: 10,
-                          onSave: (v)=> cubit.telephone = v,
                         ),
                         InputFormField(
                           hint: '  الرسالة  ',

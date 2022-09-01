@@ -26,7 +26,8 @@ class CaptainInfo extends StatelessWidget {
           children: [
             Row(
               children: [
-                Image.asset('assets/images/captain.png',width: 80,),
+                Image.asset('assets/images/logo.png',width: 50,),
+                SizedBox(width: 10,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

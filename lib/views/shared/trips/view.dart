@@ -59,7 +59,7 @@ class _TripsViewState extends State<TripsView> {
                           borderRadius: BorderRadius.circular(10)),
                       child: AppStorage.customerGroup == 2 ? TabBar(
                         labelStyle: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w700),
+                            fontSize: 15, fontWeight: FontWeight.w700),
                         indicator: BoxDecoration(
                             color: kPrimaryColor,
                             borderRadius: BorderRadius.circular(10)),
