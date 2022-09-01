@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:soheel_app/core/notifications/firebase.dart';
 import 'package:soheel_app/core/router/router.dart';
 import 'package:soheel_app/views/shared/trips/view.dart';
 import 'package:soheel_app/views/user/home/view.dart';
@@ -21,6 +22,7 @@ class _SplashViewState extends State<SplashView> {
   }
 
   void checkNavigation() async {
+    FirebaseMessagingHelper.init();
     Timer(
       Duration(seconds: 4), () =>
     RouteManager.navigateAndPopAll(AppStorage.getUserModel() != null ? (AppStorage.customerGroup == 2) ? TripsView() : HomeView() : IntroView()),

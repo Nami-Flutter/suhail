@@ -84,19 +84,22 @@ class CaptainInfo extends StatelessWidget {
                 Spacer(),
                 BlocBuilder<TripsDetailsCubit, TripDetailsStates>(
                   builder: (context, state) {
-                    return RatingBar.builder(
-                      initialRating:captainInfo[0].captainRating!.toDouble(),
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star,
-                        size: 10,
-                        color: kPrimaryColor,
+                    return AbsorbPointer(
+                      absorbing: true,
+                      child: RatingBar.builder(
+                        initialRating: captainInfo[0].captainRating!.toDouble(),
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          size: 10,
+                          color: kPrimaryColor,
+                        ),
+                        onRatingUpdate: (rating) {},
                       ),
-                      onRatingUpdate: (rating) {},
                     );
                   },
                 ),
