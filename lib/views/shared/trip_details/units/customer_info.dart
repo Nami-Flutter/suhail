@@ -37,11 +37,11 @@ class CustomerInfo extends StatelessWidget {
                 Spacer(),
                 InkWell(
                   onTap: () => RouteManager.navigateTo(ChatView(title: customerInfo.customerName ?? '', tripID: cubit.tripId!, receiverID: customerInfo.customerId!,)),
-                  child: CircleAvatar(
+                  child:customerInfo.tripStatus == '1' ? CircleAvatar(
                     radius: 22,
                     backgroundColor: kPrimaryColor,
                     child: Icon(FontAwesomeIcons.commentDots,size: 24,),
-                  ),
+                  ) : SizedBox()
                 )
               ],
             ),

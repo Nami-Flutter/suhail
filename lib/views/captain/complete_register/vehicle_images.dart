@@ -78,7 +78,7 @@ class VehicleImagesView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('ارفع رخصة المركبة',style: Theme.of(context).textTheme.headline5!.copyWith(color: kAccentColor),),
-                      Text('ارفق صور رخصة المركبة الوجه والظهر',style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kBlueColor),),
+                      Text('ارفق صور رخصة المركبة الوجة والظهر',style: Theme.of(context).textTheme.labelLarge!.copyWith(color: kBlueColor),),
                     ],
                   )
               ),

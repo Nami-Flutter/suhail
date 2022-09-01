@@ -39,7 +39,7 @@ class NotificationsView extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('تم الغاء الرحله',style: Theme.of(context).textTheme.headline6,),
+                          Text('تم الغاء الرحلة',style: Theme.of(context).textTheme.headline6,),
                           Text('ديزل',
                               style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor))
                         ],
@@ -61,7 +61,7 @@ class NotificationsView extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('تم الغاء الرحله',style: Theme.of(context).textTheme.headline6,),
+                          Text('تم الغاء الرحلة',style: Theme.of(context).textTheme.headline6,),
                           Text('ديزل',
                               style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor))
                         ],
@@ -83,7 +83,7 @@ class NotificationsView extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('تم الغاء الرحله',style: Theme.of(context).textTheme.headline6,),
+                          Text('تم الغاء الرحلة',style: Theme.of(context).textTheme.headline6,),
                           Text('ديزل',
                               style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor))
                         ],
@@ -105,7 +105,7 @@ class NotificationsView extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('تم الغاء الرحله',style: Theme.of(context).textTheme.headline6,),
+                          Text('تم الغاء الرحلة',style: Theme.of(context).textTheme.headline6,),
                           Text('ديزل',
                               style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor))
                         ],

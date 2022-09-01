@@ -65,7 +65,7 @@ class LoginView extends StatelessWidget {
                       secure: true,
                       maxLength: 10,
                       verticalMargin: 10,
-                      hint: 'كلمه المرور  ',
+                      hint: 'كلمة المرور  ',
                       icon: FontAwesomeIcons.unlockAlt,
                       onSave: (v)=>cubit.password = v,
                     ),

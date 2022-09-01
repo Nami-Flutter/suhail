@@ -63,7 +63,7 @@ class CCompleteRegisterCubit extends Cubit<CCompleteRegisterStates> {
     try {
       final response = await DioHelper.post('captain/register_info', formData: await _convertInfo(position));
       if (response.data['success']) {
-        showSnackBar('تم تسجيل الحساب نجاح جاري مراجعه حسابك من قبل الاداره');
+        showSnackBar('تم تسجيل الحساب نجاح جاري مراجعة حسابك من قبل الاداره');
         RouteManager.navigateAndPopAll(IntroView());
       }else{
         showSnackBar('حدث خطأ');

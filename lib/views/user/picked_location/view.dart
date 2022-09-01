@@ -63,7 +63,6 @@ class _PickedLocationState extends State<PickedLocation> {
             onMapCreated: (controller) => googleMapController = controller,
             onTap: (LatLng latLng) async {
               Marker m = Marker(
-                  infoWindow: InfoWindow(title: 'Here',snippet: 'You Are Here Now'),
                   markerId: MarkerId('1'),
                   position:latLng,
               );
@@ -88,7 +87,6 @@ class _PickedLocationState extends State<PickedLocation> {
                   onSelect: (latLng) async {
                     cityName = await LocationManager.getCityByLatLng(latitude: latLng.latitude, longitude: latLng.longitude);
                     Marker m = Marker(
-                      infoWindow: InfoWindow(title: 'Here',snippet: 'You Are Here Now'),
                       markerId: MarkerId('1'),
                       position:latLng,
                     );
@@ -116,13 +114,14 @@ class _PickedLocationState extends State<PickedLocation> {
                       children: [
                         Icon(FontAwesomeIcons.mapMarkerAlt,size: 26,color: kDarkGreyColor,),
                         SizedBox(width: 20,),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('ادخل وجهه الاستلام',style: Theme.of(context).textTheme.headline6,),
-                            Text(cityName ?? '',
-                                style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kDarkGreyColor))
-                          ],
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('ادخل وجهة الاستلام',style: Theme.of(context).textTheme.headline6,),
+                              Text(cityName ?? '', style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kDarkGreyColor))
+                            ],
+                          ),
                         )
                       ],
                     )

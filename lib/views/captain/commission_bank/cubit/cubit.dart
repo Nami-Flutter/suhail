@@ -7,8 +7,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/core/dio_manager/dio_manager.dart';
 import 'package:soheel_app/core/media_manager/media_manager.dart';
+import 'package:soheel_app/core/router/router.dart';
 import 'package:soheel_app/views/captain/commission_bank/cubit/states.dart';
 import 'package:soheel_app/views/captain/commission_bank/model.dart';
+import 'package:soheel_app/views/shared/trips/view.dart';
 import 'package:soheel_app/views/user/requset_trip/cubit/states.dart';
 import 'package:soheel_app/widgets/snack_bar.dart';
 
@@ -48,6 +50,7 @@ class BankCubit extends Cubit<BankStates>{
       final data = response.data;
       if (data.containsKey('success')) {
         showSnackBar('تمت العملية بنجاح!');
+        RouteManager.navigateAndPopAll(TripsView());
       } else {
         throw Exception(response.data);
       }

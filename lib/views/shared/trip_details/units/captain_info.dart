@@ -38,11 +38,11 @@ class CaptainInfo extends StatelessWidget {
                 Spacer(),
                 InkWell(
                   onTap: () => RouteManager.navigateTo(ChatView(title: captainInfo[0].captainName.toString(), tripID: cubit.tripId!, receiverID: captainInfo[0].captainId!,)),
-                  child: CircleAvatar(
+                  child:cubit.tripDetailsModel?.tripDetails!.tripStatus == "1" ? CircleAvatar(
                     radius: 22,
                     backgroundColor: kPrimaryColor,
                     child: Icon(FontAwesomeIcons.commentDots,size: 24,),
-                  ),
+                  ) : SizedBox()
                 )
               ],
             ),
@@ -54,7 +54,7 @@ class CaptainInfo extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('اسم المركبه',style: Theme.of(context).textTheme.titleLarge,),
+                    Text('اسم المركبة',style: Theme.of(context).textTheme.titleLarge,),
                     Text(captainInfo[0].vehicleModel.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor),),
                   ],
                 ),
@@ -72,7 +72,7 @@ class CaptainInfo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('رقم اللوحه',style: Theme.of(context).textTheme.titleLarge,),
+                Text('رقم اللوحة',style: Theme.of(context).textTheme.titleLarge,),
                 Spacer(),
                 Text(captainInfo[0].vehicleNumber.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor),),
               ],
@@ -84,19 +84,22 @@ class CaptainInfo extends StatelessWidget {
                 Spacer(),
                 BlocBuilder<TripsDetailsCubit, TripDetailsStates>(
                   builder: (context, state) {
-                    return RatingBar.builder(
-                      initialRating:captainInfo[0].captainRating!.toDouble(),
-                      minRating: 1,
-                      direction: Axis.horizontal,
-                      allowHalfRating: true,
-                      itemCount: 5,
-                      itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
-                      itemBuilder: (context, _) => Icon(
-                        Icons.star,
-                        size: 10,
-                        color: kPrimaryColor,
+                    return AbsorbPointer(
+                      absorbing: true,
+                      child: RatingBar.builder(
+                        initialRating: captainInfo[0].captainRating!.toDouble(),
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        allowHalfRating: true,
+                        itemCount: 5,
+                        itemPadding: EdgeInsets.symmetric(horizontal: 0.0),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          size: 10,
+                          color: kPrimaryColor,
+                        ),
+                        onRatingUpdate: (rating) {},
                       ),
-                      onRatingUpdate: (rating) {},
                     );
                   },
                 ),

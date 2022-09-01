@@ -51,6 +51,7 @@ class _EditProfileCaptainState extends State<EditProfileCaptain> {
                       fillColor: kGreyColor,
                       verticalMargin: 5,
                       controller:cubit.firstNameController,
+                      disabled: true,
                       validator: Validator.name,
                     ),
                     InputFormField(
@@ -58,6 +59,7 @@ class _EditProfileCaptainState extends State<EditProfileCaptain> {
                       fillColor: kGreyColor,
                       verticalMargin: 5,
                       controller:cubit.lastNameController,
+                      disabled: true,
                       validator: Validator.name,
                     ),
                     Padding(
