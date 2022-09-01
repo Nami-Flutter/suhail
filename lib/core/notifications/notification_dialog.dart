@@ -5,6 +5,7 @@ import 'package:soheel_app/views/shared/trip_details/view.dart';
 import 'package:soheel_app/views/shared/trips/view.dart';
 
 import '../../constants.dart';
+import '../../views/user/requset_trip/cubit/cubit.dart';
 import '../../widgets/my_text.dart';
 import '../router/router.dart';
 
@@ -16,6 +17,10 @@ showNotificationDialog({
   required String type,
   required String? tripID,
 }) {
+  if (AddTripCubit.isTimerDialogOpen) {
+    AddTripCubit.isTimerDialogOpen = false;
+    RouteManager.pop();
+  }
   if (_isNotificationDialogVisible) {
     RouteManager.pop();
   }
@@ -45,7 +50,7 @@ class _Dialog extends StatelessWidget {
           ),
           content: MyText(
             title: body,
-            color: kGreyColor,
+            color: kBlackColor,
             fontSize: 14,
           ),
           actions: [

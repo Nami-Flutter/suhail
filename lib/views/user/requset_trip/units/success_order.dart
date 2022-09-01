@@ -40,6 +40,7 @@ class _DialogState extends State<_Dialog> {
         timer.cancel();
         final success = await AddTripCubit(null).cancelTrip(widget.tripId);
         if (success) {
+          AddTripCubit.isTimerDialogOpen = false;
           RouteManager.pop();
           showSnackBar('لم يتم العثور علي كابتن', errorMessage: true);
         } else {
@@ -73,6 +74,7 @@ class _DialogState extends State<_Dialog> {
               final success = await AddTripCubit(null).cancelTrip(widget.tripId);
               setState(() => isLoading = false);
               if (success) {
+                AddTripCubit.isTimerDialogOpen = false;
                 RouteManager.pop();
                 showSnackBar('تم الغاء الرحلة', errorMessage: true);
               }

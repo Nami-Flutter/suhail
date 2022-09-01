@@ -70,7 +70,7 @@ class HomeView extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(height: 10,),
-                              Center(child: Text(categoryData.mainCategories![index].name.toString()*2,style: TextStyle(color: kPrimaryColor), maxLines: 1, overflow: TextOverflow.ellipsis,)),
+                              Center(child: Text(categoryData.mainCategories![index].name.toString(),style: TextStyle(color: kPrimaryColor), maxLines: 1, overflow: TextOverflow.ellipsis,)),
                             ],
                           ),
                         );

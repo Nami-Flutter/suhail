@@ -168,9 +168,13 @@ class AddTripCubit extends Cubit<AddTripStates> {
   }
 
 
-  Future<void> openDialog(String tripId) =>
-      showDialog(
-          context: RouteManager.currentContext,
-          builder: (context) => successOrder(tripId),);
+  static bool isTimerDialogOpen = false;
+
+  Future<void> openDialog(String tripId) async {
+    isTimerDialogOpen = true;
+    showDialog(
+      context: RouteManager.currentContext,
+      builder: (context) => successOrder(tripId),);
+  }
 
 }
