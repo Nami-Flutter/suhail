@@ -48,13 +48,15 @@ class _FieldsState extends State<Fields> {
               children: [
                 Icon(FontAwesomeIcons.mapMarkerAlt,size: 26,color: kDarkGreyColor,),
                 SizedBox(width: 20,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('ادخل وجهه التسليم',style: Theme.of(context).textTheme.headline6,),
-                    Text(cubit.sourceLng == null ? 'تم تحديد وجهه الاستلام وعرض الموقع هنا' : "${cubit.sourceCityName}",
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kDarkGreyColor))
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('ادخل وجهه التسليم',style: Theme.of(context).textTheme.headline6,),
+                      Text(cubit.sourceLng == null ? 'تم تحديد وجهه الاستلام وعرض الموقع هنا' : "${cubit.sourceCityName}",
+                          style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kDarkGreyColor))
+                    ],
+                  ),
                 )
               ],
             ),
@@ -82,13 +84,15 @@ class _FieldsState extends State<Fields> {
               children: [
                 Icon(FontAwesomeIcons.mapMarkerAlt,size: 26,color: kDarkGreyColor,),
                 SizedBox(width: 20,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('ادخل وجهه الاستلام',style: Theme.of(context).textTheme.headline6,),
-                    Text(cubit.destinationLng == null ? 'تم تحديد وجهه الاستلام وعرض الموقع هنا' : "${cubit.destinationCityName}",
-                        style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kDarkGreyColor))
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('ادخل وجهه الاستلام',style: Theme.of(context).textTheme.headline6,),
+                      Text(cubit.destinationLng == null ? 'تم تحديد وجهه الاستلام وعرض الموقع هنا' : "${cubit.destinationCityName}",
+                          style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kDarkGreyColor))
+                    ],
+                  ),
                 )
               ],
             ),

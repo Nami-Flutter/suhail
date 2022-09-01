@@ -48,7 +48,7 @@ class TripInfo extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text('  المبلغ المدفوع',style: Theme.of(context).textTheme.titleLarge,),
-                    Text( ' R.S ' + tripDataInfo.tripCost.toString(),style: Theme.of(context).textTheme.titleLarge!.copyWith(color: kPrimaryColor),)
+                    Text(tripDataInfo.tripCost.toString(),style: Theme.of(context).textTheme.titleLarge!.copyWith(color: kPrimaryColor),)
                 ]
                 ),
               ],

@@ -96,9 +96,62 @@ class _TripsViewState extends State<TripsView> {
                       child:AppStorage.customerGroup == 2 ?  TabBarView(
                         children: [
                           nearestTripsData == null || nearestTripsData.isEmpty ?
+                          Empty() :
                           Stack(
                             children: [
-                              Empty(),
+                              RefreshIndicator(
+                                onRefresh: TripsCubit.of(context).getNearestTrip,
+                                backgroundColor: kPrimaryColor,
+                                color: kWhiteColor,
+                                displacement: 50.0,
+                                strokeWidth: 3.0,
+                                edgeOffset: 0.0,
+                                child: ListView.builder(
+                                  shrinkWrap: true,
+                                    itemBuilder: (context, index) {
+                                       return Column(
+                                         children: [
+                                           TripCard(
+                                            image: 'assets/images/truck-1.png',
+                                            status: nearestTripsData[index].name.toString(),
+                                            truckType:nearestTripsData[index].cost.toString(),
+                                            onTap: () => RouteManager.navigateTo(
+                                              TripDetailsView(tripId: nearestTripsData[index].tripId.toString(),),),
+                                      ),
+                                           Padding(
+                                             padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
+                                             child: Row(
+                                               children: [
+                                                 Expanded(
+                                                   child: MaterialButton(
+                                                     child: Text('تفاصيل الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
+                                                     onPressed: (){
+                                                       RouteManager.navigateTo(
+                                                         TripDetailsView(tripId: nearestTripsData[index].tripId.toString(),),);
+                                                     },
+                                                     padding: EdgeInsets.all(10),
+                                                     color: kPrimaryColor,
+
+                                                   ),
+                                                 ),
+                                                 SizedBox(width: 10,),
+                                                 Expanded(
+                                                   child: MaterialButton(
+                                                     child: Text('قبول الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
+                                                     onPressed: TripsDetailsCubit(nearestTripsData[index].tripId.toString()).acceptTrip,
+                                                     padding: EdgeInsets.all(10),
+                                                     color: kPrimaryColor,
+                                                   ),
+                                                 ),
+                                               ],
+                                             ),
+                                           )
+                                         ],
+                                       );
+                                    },
+                                    itemCount: nearestTripsData.length
+                                ),
+                              ),
                               Positioned(
                                 bottom: 20,
                                 left: 20,
@@ -111,54 +164,6 @@ class _TripsViewState extends State<TripsView> {
                                   ),
                                 ),
                               )
-                              // ConfirmButton(
-                              //   horizontalMargin: 20,
-                              //   verticalMargin: 10,
-                              //   title: cubit.getNearestTrips ? 'بحث في نطاق اوسع' : 'بحث في نطاق اضيق',
-                              //   onPressed: cubit.getNearestTrip,
-                              // ),
-                            ],
-                          ) :
-                          Column(
-                            children: [
-                              ListView.builder(
-                                shrinkWrap: true,
-                                  itemBuilder: (context, index) {
-                                     return TripCard(
-                                      image: 'assets/images/truck-1.png',
-                                      status: nearestTripsData[index].name.toString(),
-                                      truckType:nearestTripsData[index].cost.toString(),
-                                      onTap: () => RouteManager.navigateTo(
-                                        TripDetailsView(tripId: nearestTripsData[index].tripId.toString(),),),
-                                    );
-                                  },
-                                  itemCount: nearestTripsData.length
-                              ),
-                              // Padding(
-                              //   padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
-                              //   child: Row(
-                              //     children: [
-                              //       Expanded(
-                              //         child: MaterialButton(
-                              //           child: Text('تفاصيل الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
-                              //           onPressed: (){},
-                              //           padding: EdgeInsets.all(10),
-                              //           color: kPrimaryColor,
-                              //
-                              //         ),
-                              //       ),
-                              //       SizedBox(width: 10,),
-                              //       Expanded(
-                              //         child: MaterialButton(
-                              //           child: Text('قبول الرحلة',style: TextStyle(color: kWhiteColor,fontWeight: FontWeight.w700),),
-                              //           onPressed:(){},
-                              //           padding: EdgeInsets.all(10),
-                              //           color: kPrimaryColor,
-                              //         ),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // )
                             ],
                           ),
                           currentTripsData == null || currentTripsData.isEmpty ? Center(
