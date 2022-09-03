@@ -130,10 +130,8 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
       if (data['success'] == true){
         showSnackBar('تمت الموافقه علي الرحله بنجاح');
         RouteManager.navigateAndPopAll(TripsView());
-      }
-      else{
-        showSnackBar('حدث خطأ');
-
+      } else{
+        showSnackBar('لا يمكنك قبول هذه الرحلة في الوقت الحالي', errorMessage: true);
       }
     } catch (e) {
       emit(TripDetailsErrorState(e.toString()));

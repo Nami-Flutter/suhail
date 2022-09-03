@@ -67,17 +67,11 @@ class AddTripCubit extends Cubit<AddTripStates> {
     try {
       final response = await DioHelper.post('user/trip/add_trip', formData: formData);
       final data = response.data;
-      if (data.containsKey('success')) {
+      if (data['success'] != null) {
         showSnackBar('تم اضافة الرحلة بنجاح!');
         openDialog(data['trip_id'].toString());
-        print(
-          {
-            'trip_date': dateTime,
-            'trip_time': time,
-          }
-        );
       } else {
-        throw Exception(response.data);
+        showSnackBar(data['failed'], errorMessage: true);
       }
     } catch (e, s) {
       print(e);
