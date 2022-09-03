@@ -39,7 +39,7 @@ class ForgetPasswordView extends StatelessWidget {
                     SizedBox(height: 30,),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text('نسيت كلمه المرور  ',style: getTextTheme.headline6!.copyWith(color: kPrimaryColor),),
+                      child: Text('نسيت كلمة المرور  ',style: getTextTheme.headline6!.copyWith(color: kPrimaryColor),),
                     ),
                     InputFormField(
                       fillColor: kWhiteColor,
@@ -53,7 +53,7 @@ class ForgetPasswordView extends StatelessWidget {
                       icon: FontAwesomeIcons.mobileAlt,
                     ),
                     ConfirmButton(
-                      title: 'استرجاع كلمه المرور',
+                      title: 'استرجاع كلمة المرور',
                       border: false,
                       verticalMargin: 10,
                       onPressed: (){

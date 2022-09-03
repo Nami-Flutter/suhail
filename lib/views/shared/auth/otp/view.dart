@@ -69,7 +69,7 @@ class OtpView extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(' لم تستلم رساله ؟  ',style: getTextTheme.titleMedium!.copyWith(color: kBlueColor),),
+                          Text(' لم تستلم رسالة ؟  ',style: getTextTheme.titleMedium!.copyWith(color: kBlueColor),),
                           InkWell(
                             onTap: (){
                               cubit.resendCode();

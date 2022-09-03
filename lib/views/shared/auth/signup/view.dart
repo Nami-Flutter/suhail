@@ -84,7 +84,7 @@ class SignUpView extends StatelessWidget {
                       isNext: true,
                       secure: true,
                       verticalMargin: 10,
-                      hint: '  كلمه المرور',
+                      hint: '  كلمة المرور',
                       onSave: (e)=> cubit.password = e,
                     ),
                     InputFormField(
@@ -94,7 +94,7 @@ class SignUpView extends StatelessWidget {
                       isNext: true,
                       secure: true,
                       verticalMargin: 10,
-                      hint: 'تأكيد  كلمه المرور',
+                      hint: 'تأكيد  كلمة المرور',
                       onSave: (e)=> cubit.confirm = e,
                     ),
 

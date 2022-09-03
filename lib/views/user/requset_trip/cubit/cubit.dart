@@ -61,8 +61,8 @@ class AddTripCubit extends Cubit<AddTripStates> {
 
   Future<void> addTrip() async {
     if (!formKey.currentState!.validate()) return;
-    formKey.currentState!.save();
     emit(AddTripLoadingState());
+    formKey.currentState!.save();
     final formData = await _convertProductDataToFormData();
     try {
       final response = await DioHelper.post('user/trip/add_trip', formData: formData);
@@ -168,6 +168,7 @@ class AddTripCubit extends Cubit<AddTripStates> {
     isTimerDialogOpen = true;
     showDialog(
       context: RouteManager.currentContext,
+      barrierDismissible: false,
       builder: (context) => successOrder(tripId),);
   }
 

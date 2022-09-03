@@ -74,7 +74,7 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
       Marker(
         markerId: MarkerId("receipt"),
         infoWindow: InfoWindow(
-          title: "وجهه الاستلام",
+          title: "وجهة الاستلام",
         ),
         position: receipt,
         icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
@@ -84,7 +84,7 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
         Marker(
           markerId: MarkerId("delivery"),
           infoWindow: InfoWindow(
-            title: "وجهه التسليم"
+            title: "وجهة التسليم"
           ),
           position: delivery,
         )
@@ -104,7 +104,7 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
           });
       final data = response.data;
       if (data['success'] == true){
-        showSnackBar('تم انهاء الرحله بنجاح');
+        showSnackBar('تم انهاء الرحلة بنجاح');
         RouteManager.navigateAndPopUntilFirstPage(WalletView());
       }
       else{
@@ -128,8 +128,10 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
           });
       final data = response.data;
       if (data['success'] == true){
-        showSnackBar('تمت الموافقه علي الرحله بنجاح');
+        showSnackBar('تمت الموافقة علي الرحلة بنجاح');
         RouteManager.navigateAndPopAll(TripsView());
+      } else{
+        showSnackBar('لا يمكن قبول هذه الرحلة في الوقت الحالي ');
       } else{
         showSnackBar('لا يمكنك قبول هذه الرحلة في الوقت الحالي', errorMessage: true);
       }
@@ -150,13 +152,14 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
             "rating" : rating,
           });
       final data = response.data;
-      if (data.containsKey('success') == true){
+      if (data['success'] == true){
         showSnackBar('تم التقييم بنجاح');
+      } else{
+        showSnackBar('تم التقييم من قبل',
+        errorMessage: true
+        );
       }
-      else{
-        showSnackBar('حدث خطأ');
-
-      }
+      RouteManager.pop();
     } catch (e) {
       emit(TripDetailsErrorState(e.toString()));
     }

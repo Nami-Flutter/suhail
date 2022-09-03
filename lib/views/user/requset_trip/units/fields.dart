@@ -28,7 +28,7 @@ class _FieldsState extends State<Fields> {
         InkWell(
           onTap: ()=> RouteManager.navigateTo(
               PickedLocation(
-                appTitle: 'ادخل وجهه التسليم',
+                appTitle: 'ادخل وجهة التسليم',
                 onConfirm: (lat, lng, city) {
                   cubit.setSourceLocation(sourceLat: lat, sourceLng: lng, cityName: city);
                   cubit.getCost();
@@ -52,8 +52,8 @@ class _FieldsState extends State<Fields> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('ادخل وجهه التسليم',style: Theme.of(context).textTheme.headline6,),
-                      Text(cubit.sourceLng == null ? 'تم تحديد وجهه الاستلام وعرض الموقع هنا' : "${cubit.sourceCityName}",
+                      Text('ادخل وجهة التسليم',style: Theme.of(context).textTheme.headline6,),
+                      Text(cubit.sourceLng == null ? 'تم تحديد وجهة الاستلام وعرض الموقع هنا' : "${cubit.sourceCityName}",
                           style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kDarkGreyColor))
                     ],
                   ),
@@ -65,7 +65,7 @@ class _FieldsState extends State<Fields> {
         InkWell(
           onTap: ()=> RouteManager.navigateTo(
               PickedLocation(
-                appTitle: 'ادخل وجهه الاستلام',
+                appTitle: 'ادخل وجهة الاستلام',
                 onConfirm: (lat, lng, city) {
                   cubit.setDestinationLocation(destinationLat: lat, destinationLng: lng, cityName: city);
                   cubit.getCost();
@@ -88,8 +88,8 @@ class _FieldsState extends State<Fields> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('ادخل وجهه الاستلام',style: Theme.of(context).textTheme.headline6,),
-                      Text(cubit.destinationLng == null ? 'تم تحديد وجهه الاستلام وعرض الموقع هنا' : "${cubit.destinationCityName}",
+                      Text('ادخل وجهة الاستلام',style: Theme.of(context).textTheme.headline6,),
+                      Text(cubit.destinationLng == null ? 'تم تحديد وجهة الاستلام وعرض الموقع هنا' : "${cubit.destinationCityName}",
                           style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kDarkGreyColor))
                     ],
                   ),
@@ -186,7 +186,7 @@ class _FieldsState extends State<Fields> {
               children: [
                 Icon(FontAwesomeIcons.solidMoneyBillAlt,size: 26,color: kPrimaryColor,),
                 SizedBox(width: 20,),
-                Text('تكلفة الرحله',style: Theme.of(context).textTheme.headline6!.copyWith(color: kBlueColor),),
+                Text('تكلفة الرحلة',style: Theme.of(context).textTheme.headline6!.copyWith(color: kBlueColor),),
                 Spacer(),
                 Text(cubit.costValue == null ? '0.0' : cubit.costValue!,style: Theme.of(context).textTheme.headline6!.copyWith(color: kPrimaryColor),)
 

@@ -37,7 +37,7 @@ class _CommissionBankViewState extends State<CommissionBankView> {
             if(state is BankLoadingStates){
               return Loading();
             }
-            return bankData == null ? Center(child: Text('لا توجد بنوك مضافه')) : Padding(
+            return bankData == null ? Center(child: Text('لا توجد بنوك مضافة')) : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 30),
               child: ListView(
                 children: [
@@ -69,7 +69,7 @@ class _CommissionBankViewState extends State<CommissionBankView> {
                           onSave: (v)=> cubit.senderName = v,
                         ),
                         InputFormField(
-                          hint: 'اسم البنك المرسل منه',
+                          hint: 'اسم البنك المرسل منة',
                           verticalMargin: 10,
                           validator: Validator.name,
                           isNext: true,
@@ -84,7 +84,7 @@ class _CommissionBankViewState extends State<CommissionBankView> {
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Text('  ارفق صوره التحويل : ',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20),),
+                          child: Text('  ارفق صورة التحويل : ',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20),),
                         ),
                         Wrap(
                       // crossAxisAlignment: WrapCrossAlignment.center,

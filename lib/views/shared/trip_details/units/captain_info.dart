@@ -38,11 +38,11 @@ class CaptainInfo extends StatelessWidget {
                 Spacer(),
                 InkWell(
                   onTap: () => RouteManager.navigateTo(ChatView(title: captainInfo[0].captainName.toString(), tripID: cubit.tripId!, receiverID: captainInfo[0].captainId!,)),
-                  child: CircleAvatar(
+                  child:cubit.tripDetailsModel?.tripDetails!.tripStatus == "1" ? CircleAvatar(
                     radius: 22,
                     backgroundColor: kPrimaryColor,
                     child: Icon(FontAwesomeIcons.commentDots,size: 24,),
-                  ),
+                  ) : SizedBox()
                 )
               ],
             ),
@@ -54,7 +54,7 @@ class CaptainInfo extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('اسم المركبه',style: Theme.of(context).textTheme.titleLarge,),
+                    Text('اسم المركبة',style: Theme.of(context).textTheme.titleLarge,),
                     Text(captainInfo[0].vehicleModel.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor),),
                   ],
                 ),
@@ -72,7 +72,7 @@ class CaptainInfo extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('رقم اللوحه',style: Theme.of(context).textTheme.titleLarge,),
+                Text('رقم اللوحة',style: Theme.of(context).textTheme.titleLarge,),
                 Spacer(),
                 Text(captainInfo[0].vehicleNumber.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(color: kDarkGreyColor),),
               ],

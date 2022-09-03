@@ -50,7 +50,7 @@ class CreateNewPasswordView extends StatelessWidget {
                       secure: true,
                       maxLength: 10,
                       verticalMargin: 10,
-                      hint: '  كلمه المرور',
+                      hint: '  كلمة المرور',
                       onSave: (v)=> cubit.password = v,
                     ),
                     InputFormField(
@@ -60,7 +60,7 @@ class CreateNewPasswordView extends StatelessWidget {
                       secure: true,
                       maxLength: 10,
                       verticalMargin: 10,
-                      hint: 'تأكيد  كلمه المرور',
+                      hint: 'تأكيد  كلمة المرور',
                       onSave: (v)=> cubit.confirm = v,
                     ),
                     state is NewPasswordLoadingState ? Loading() :

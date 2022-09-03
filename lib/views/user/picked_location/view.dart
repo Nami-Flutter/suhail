@@ -118,7 +118,7 @@ class _PickedLocationState extends State<PickedLocation> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('ادخل وجهه الاستلام',style: Theme.of(context).textTheme.headline6,),
+                              Text('ادخل وجهة الاستلام',style: Theme.of(context).textTheme.headline6,),
                               Text(cityName ?? '', style: Theme.of(context).textTheme.titleSmall!.copyWith(color: kDarkGreyColor))
                             ],
                           ),

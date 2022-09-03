@@ -96,7 +96,23 @@ class _TripsViewState extends State<TripsView> {
                       child:AppStorage.customerGroup == 2 ?  TabBarView(
                         children: [
                           nearestTripsData == null || nearestTripsData.isEmpty ?
-                          Empty() :
+                          Stack(
+                            children: [
+                              Empty(),
+                              Positioned(
+                                bottom: 20,
+                                left: 20,
+                                child: CircleAvatar(
+                                  maxRadius: 30,
+                                  backgroundColor: kPrimaryColor,
+                                  child:IconButton(
+                                    onPressed: () => showSearchArea(cubit),
+                                    icon:Icon(FontAwesomeIcons.search,color: kWhiteColor,),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ) :
                           Stack(
                             children: [
                               RefreshIndicator(

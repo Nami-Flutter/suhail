@@ -67,11 +67,12 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                                   });
                                 },
                                 icon: Pulse(
-                                  delay: Duration(milliseconds: 300),
+                                  infinite: true,
+                                  delay: Duration(milliseconds:800),
                                   child: Icon(
                                     !isCollapsed ? Icons.arrow_circle_up :  Icons.arrow_circle_down,
-                                    size: 50,
-                                    color: kAccentColor,
+                                    size: 40,
+                                    color: kPrimaryColor,
                                   ),
                                 ),
                               ))
@@ -147,13 +148,15 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                               ],
                             ),
                           ),
-                          AppStorage.customerGroup == 1 ?  ConfirmButton(
+                          // في حاله المستخدم + الرحله نشطه
+                          (AppStorage.customerGroup == 1 && cubit.tripDetailsModel?.tripDetails!.tripStatus == "1") ? SizedBox() :
+                          (AppStorage.customerGroup == 1 && cubit.tripDetailsModel?.tripDetails!.tripStatus == "2") ? ConfirmButton(
                             color: kPrimaryColor,
                             onPressed: showRating,
                             horizontalMargin: 20,
                             verticalMargin: 10,
-                            title: 'تقييم الرحله',
-                          ) :
+                            title: 'تقييم الرحلة',
+                          )  :
                           Container(
                             padding: EdgeInsets.symmetric(horizontal: 20),
                             child: Builder(
@@ -222,7 +225,7 @@ class _TripDetailsViewState extends State<TripDetailsView> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('تقييم الرحله'),
+              Text('تقييم الرحلة'),
               SizedBox(height: 20,),
               buildRating(),
               SizedBox(height: 20,),
@@ -232,7 +235,6 @@ class _TripDetailsViewState extends State<TripDetailsView> {
                     title: ' اضف تقييمك للرحلة',
                     onPressed: (){
                       TripsDetailsCubit(null).addRate(rating ,widget.tripId!);
-                      RouteManager.navigateAndPopAll(TripsView());
                     },
                   );
                 },
