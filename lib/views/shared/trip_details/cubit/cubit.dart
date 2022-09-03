@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:soheel_app/core/app_storage/app_storage.dart';
@@ -8,12 +7,8 @@ import 'package:soheel_app/core/router/router.dart';
 import 'package:soheel_app/views/captain/wallet/view.dart';
 import 'package:soheel_app/views/shared/trip_details/cubit/states.dart';
 import 'package:soheel_app/views/shared/trip_details/model.dart';
-import 'package:soheel_app/views/shared/trips/cubit/states.dart';
-import 'package:soheel_app/views/shared/trips/current_trip_model.dart';
-import 'package:soheel_app/views/shared/trips/finish_trip_model.dart';
 import 'package:soheel_app/views/shared/trips/view.dart';
 import 'package:soheel_app/widgets/snack_bar.dart';
-
 import '../../../../core/dio_manager/dio_manager.dart';
 
 class TripsDetailsCubit extends Cubit<TripDetailsStates> {
@@ -30,8 +25,7 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
   Timer? _timer;
   Future<void> initTracking() async {
     if (AppStorage.customerGroup == 1 && tripDetailsModel?.tripDetails?.tripStatus == '1') {
-      // TODO: Upgrade Duration to 10 / 20
-      _timer = Timer.periodic(Duration(seconds: 5), (timer) async {
+      _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
         final location = await LocationManager.getCaptainLocationFromServer(tripDetailsModel!.captainDetails![0].captainId!);
         if (location != null)
         mapMarkers.add(
@@ -130,8 +124,6 @@ class TripsDetailsCubit extends Cubit<TripDetailsStates> {
       if (data['success'] == true){
         showSnackBar('تمت الموافقة علي الرحلة بنجاح');
         RouteManager.navigateAndPopAll(TripsView());
-      } else{
-        showSnackBar('لا يمكن قبول هذه الرحلة في الوقت الحالي ');
       } else{
         showSnackBar('لا يمكنك قبول هذه الرحلة في الوقت الحالي', errorMessage: true);
       }
