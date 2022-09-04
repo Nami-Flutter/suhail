@@ -71,7 +71,6 @@ class _EditProfileCaptainState extends State<EditProfileCaptain> {
                       fillColor: kGreyColor,
                       verticalMargin: 5,
                       disabled: true,
-                      validator: Validator.name,
                     ),
                     InputFormField(
                       hint: cubit.captainInfoModel?.captainInfo![0].vehicleModel.toString(),

@@ -52,6 +52,8 @@ dependencies:
   flutter_ringtone_player: ^3.2.0
   # Payments
   moyasar_payment: ^0.0.9
+  #carousel_slider
+  carousel_slider: ^4.1.1
   pay:
   # Webview
   webview_flutter:
