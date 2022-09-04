@@ -21,7 +21,7 @@ class TripsCubit extends Cubit<TripsStates> {
 
   double? captainLat, captainLng;
   bool getNearestTrips = false;
-  bool _isWalletNotificationSent = false;
+  static bool _isWalletNotificationSent = false;
 
   Future<void> getCurrentTrips() async {
     emit(TripsLoadingState());
