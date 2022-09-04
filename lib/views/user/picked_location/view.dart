@@ -128,7 +128,7 @@ class _PickedLocationState extends State<PickedLocation> {
                 ),
                 ConfirmButton(
                   verticalMargin: 20,
-                  color: kPrimaryColor,
+                  color:myMarkers.isEmpty ? kDarkGreyColor : kPrimaryColor,
                   onPressed: (){
                     if (myMarkers.isNotEmpty) {
                       final position = myMarkers.first.position;
@@ -136,7 +136,7 @@ class _PickedLocationState extends State<PickedLocation> {
                       RouteManager.pop();
                     }
                   },
-                  title: 'تأكيد',
+                  title:myMarkers.isEmpty ? 'برجاء البحث أو تحديد العنوان علي الخريطة' : 'تأكيد',
                 )
               ],
             )

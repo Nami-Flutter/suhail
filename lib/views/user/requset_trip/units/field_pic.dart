@@ -50,7 +50,7 @@ class _PicsUploadsState extends State<PicsUploads> {
                   ],
                 ))
             .toList(),
-        if (cubit.imageFileList.length < 5)
+        if (cubit.imageFileList.length < 2)
           cubit.imageFileList.isEmpty ?  MaterialButton(
             onPressed: () {
               cubit.selectImages();

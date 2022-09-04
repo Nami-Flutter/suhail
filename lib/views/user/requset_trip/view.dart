@@ -13,6 +13,7 @@ import 'package:soheel_app/views/user/requset_trip/units/details_field.dart';
 import 'package:soheel_app/views/user/requset_trip/units/field_pic.dart';
 import 'package:soheel_app/views/user/requset_trip/units/fields.dart';
 import 'package:soheel_app/views/user/requset_trip/units/success_order.dart';
+import 'package:soheel_app/widgets/app/loading.dart';
 import 'package:soheel_app/widgets/app_bar.dart';
 import 'package:soheel_app/widgets/confirm_button.dart';
 import 'package:soheel_app/widgets/text_form_field.dart';
@@ -55,20 +56,23 @@ class _RequestTripViewState extends State<RequestTripView> {
                   ),
                   PicsUploads(),
                   DetailsFields(),
-                  ConfirmButton(
-                    // onPressed: ()=> openDialog() ,
-                    onPressed: cubit.costValue == null || cubit.costValue!.isEmpty ? null : (){
-                      if(AppStorage.isLogged) {
-                        cubit.addTrip();
-                      } else {
-                        RouteManager.navigateTo(IntroView());
-                      }
-                    },
-                    color: kPrimaryColor,
-                    verticalMargin: 20,
-                    horizontalMargin: 20,
-                    title: 'تاكيد وارسال الطلب',
-                  )
+                  BlocBuilder<AddTripCubit,AddTripStates>(builder: (context, state) {
+                   return state is AddTripLoadingState ? Loading() :
+                     ConfirmButton(
+                     // onPressed: ()=> openDialog() ,
+                     onPressed: cubit.costValue == null || cubit.costValue!.isEmpty ? null : (){
+                       if(AppStorage.isLogged) {
+                         cubit.addTrip();
+                       } else {
+                         RouteManager.navigateTo(IntroView());
+                       }
+                     },
+                     color: kPrimaryColor,
+                     verticalMargin: 20,
+                     horizontalMargin: 20,
+                     title: 'تاكيد وارسال الطلب',
+                   );
+                 },)
                 ],
               ),
             );

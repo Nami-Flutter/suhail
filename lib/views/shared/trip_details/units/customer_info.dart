@@ -46,13 +46,13 @@ class CustomerInfo extends StatelessWidget {
               ],
             ),
             Divider(),
-            Row(
+            customerInfo.tripStatus == '0' ? SizedBox()  : customerInfo.tripStatus == '1' ?  Row(
               children: [
                 Text('رقم الجوال',style: Theme.of(context).textTheme.titleLarge,),
                 Spacer(),
                 Text(customerInfo.customerTelephone.toString(),style: Theme.of(context).textTheme.titleLarge!.copyWith(color: kDarkGreyColor),),
               ],
-            ),
+            ) : SizedBox()
           ],
         );
       },

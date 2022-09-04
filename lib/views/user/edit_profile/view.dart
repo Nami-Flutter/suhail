@@ -61,18 +61,18 @@ class EditProfileView extends StatelessWidget {
                     fillColor: kWhiteColor,
                     horizontalMargin: 20,
                     verticalMargin: 5,
+                    disabled: true,
                     controller:cubit.firstNameController,
                     validator: Validator.name,
-                    suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
                   ),
                   InputFormField(
                     hint: 'الاسم الاخير  ',
                     fillColor: kWhiteColor,
                     horizontalMargin: 20,
+                    disabled: true,
                     verticalMargin: 5,
                     controller: cubit.lastNameController,
                     validator: Validator.name,
-                    suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
                   ),
                   InputFormField(
                     hint: 'رقم الجوال  ',
@@ -94,17 +94,17 @@ class EditProfileView extends StatelessWidget {
                   //   suffixIcon: Icon(FontAwesomeIcons.edit,color: kPrimaryColor,size: 16,),
                   // ),
                   SizedBox(height: 50,),
-                  BlocBuilder<EditProfileCubit,EditProfileStates>(
-                    builder: (context, state) {
-                     return state is EditProfileLoadingState ? Loading() : ConfirmButton(
-                        verticalMargin: 20,
-                        onPressed: cubit.editProfile,
-                        horizontalMargin: 20,
-                        title: '  تعديل',
-                        color: kPrimaryColor,
-                      );
-                    },
-                  ),
+                  // BlocBuilder<EditProfileCubit,EditProfileStates>(
+                  //   builder: (context, state) {
+                  //    return state is EditProfileLoadingState ? Loading() : ConfirmButton(
+                  //       verticalMargin: 20,
+                  //       onPressed: cubit.editProfile,
+                  //       horizontalMargin: 20,
+                  //       title: '  تعديل',
+                  //       color: kPrimaryColor,
+                  //     );
+                  //   },
+                  // ),
                   ConfirmButton(
                     verticalMargin: 10,
                     horizontalMargin: 20,
