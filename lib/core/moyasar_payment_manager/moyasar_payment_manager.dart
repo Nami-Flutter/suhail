@@ -9,7 +9,7 @@ import 'credit_model.dart';
 abstract class MoyasarPaymentManager {
 
   static MoyasarPayment _moyasarPayment = MoyasarPayment();
-  static const String _publishableKey = "pk_test_75VUjKMXCcBzYHQ4g3UdGAvJSkp6VHpkLcncY4qA";
+  static const String _publishableKey = "pk_test_2JRzLVTe5acWqQww1NtM9hexh9QRGVJFMXbf8b7z";
   static const String _secretKey = "sk_test_BhctT2BCxcLMEFZNZ75eNvbsAmYg4rdFS6ugjkrk";
   // static const String _applePayMerchantID = "merchant.tamhir.app.pay";
 
