@@ -40,7 +40,6 @@ class EditProfileCaptainCubit extends Cubit<EditProfileCaptainStates>{
           });
       final data = response.data;
       captainInfoModel = CaptainInfoModel.fromJson(data);
-
     }catch(e){
       emit(EditProfileCaptainErrorState(e.toString()));
     }

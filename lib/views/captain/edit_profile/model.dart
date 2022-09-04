@@ -48,7 +48,7 @@ class CaptainInfoElement {
   factory CaptainInfoElement.fromJson(Map<String, dynamic> json) => CaptainInfoElement(
     captainId: json["captain_id"],
     captainName: json["captain_name"],
-    captainRating: json["captain_rating"],
+    captainRating: int.tryParse(json["captain_rating"].toString()) ?? 0,
     categoryName: json["category_name"],
     vehicleModel: json["vehicle_model"],
     vehicleType: json["vehicle_type"],

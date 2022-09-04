@@ -55,7 +55,7 @@ class CaptainDetail {
     captainId: json["captain_id"],
     captainName: json["captain_name"],
     captainTelephone: json["captain_telephone"],
-    captainRating: json["captain_rating"],
+    captainRating: int.tryParse(json["captain_rating"].toString()) ?? 0,
     categoryName: json["category_name"],
     vehicleModel: json["vehicle_model"],
     vehicleType: json["vehicle_type"],
