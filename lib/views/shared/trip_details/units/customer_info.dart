@@ -7,6 +7,7 @@ import 'package:soheel_app/core/router/router.dart';
 import 'package:soheel_app/views/shared/chat/view.dart';
 import 'package:soheel_app/views/shared/trip_details/cubit/cubit.dart';
 import 'package:soheel_app/widgets/app/loading.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../constants.dart';
 import '../cubit/states.dart';
@@ -50,7 +51,23 @@ class CustomerInfo extends StatelessWidget {
               children: [
                 Text('رقم الجوال',style: Theme.of(context).textTheme.titleLarge,),
                 Spacer(),
-                Text(customerInfo.customerTelephone.toString(),style: Theme.of(context).textTheme.titleLarge!.copyWith(color: kDarkGreyColor),),
+                InkWell(
+                  onTap: () => launchUrl(Uri.parse('tel:' + customerInfo.customerTelephone!)),
+                  child: Container(
+                    padding: EdgeInsets.all(8),
+                    margin: EdgeInsets.symmetric(horizontal: 0),
+                    child: Row(
+                      children: [
+                        Text(customerInfo.customerTelephone!,style: TextStyle(color: kDarkGreyColor,fontSize: 22),),
+                        SizedBox(width: 10,),
+                        Icon(FontAwesomeIcons.phoneAlt,color: kPrimaryColor,),
+
+                      ],
+                    ),
+                  ),
+                ),
+
+                // Text(customerInfo.customerTelephone.toString(),style: Theme.of(context).textTheme.titleLarge!.copyWith(color: kDarkGreyColor),),
               ],
             ) : SizedBox()
           ],

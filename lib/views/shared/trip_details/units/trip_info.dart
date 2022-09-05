@@ -124,7 +124,7 @@ class _TripInfoState extends State<TripInfo> {
             Divider(),
             Column(
                 children: [
-                  Text('المحلاحظات',style: Theme.of(context).textTheme.titleLarge,),
+                  Text('الملاحظات',style: Theme.of(context).textTheme.titleLarge,),
                   tripDataInfo.tripDetails!.isEmpty ? Text('لا يوجد ملاحظات مضافة للرحلة',style: TextStyle(fontSize: 16,),) :
                   Text(tripDataInfo.tripDetails.toString(),style: Theme.of(context).textTheme.titleLarge!.copyWith(color: kPrimaryColor),)
                 ]
