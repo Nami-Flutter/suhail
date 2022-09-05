@@ -8,6 +8,7 @@ import 'package:soheel_app/views/captain/wallet/cubit.dart';
 import 'package:soheel_app/widgets/app/loading.dart';
 import 'package:soheel_app/widgets/app_bar.dart';
 import 'package:soheel_app/widgets/confirm_button.dart';
+import 'package:soheel_app/widgets/my_text.dart';
 
 class WalletView extends StatelessWidget {
   const WalletView({Key? key}) : super(key: key);
@@ -52,10 +53,23 @@ class WalletView extends StatelessWidget {
                     SizedBox(height: 15,),
                     ConfirmButton(
                       border: true,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          MyText(title: 'دفع العمولة عن طريق', color: kPrimaryColor,),
+                          SizedBox(width: 10),
+                          Image.asset(getAsset('visa'), width: 35, height: 25, fit: BoxFit.fill,),
+                          SizedBox(width: 10),
+                          Image.asset(getAsset('mastercard'), width: 35, height: 25, fit: BoxFit.fill,),
+                          SizedBox(width: 10),
+                          Image.asset(getAsset('mada'), width: 35, height: 30, fit: BoxFit.cover,),
+                          SizedBox(width: 10),
+                          Image.asset(getAsset('american-express'), width: 35, height: 35, fit: BoxFit.cover,),
+                        ],
+                      ),
                       onPressed: () async => RouteManager.navigateTo(PaymentView(
                         amount: double.parse(cubit.balance!),
                       )),
-                      title: 'دفع العمولة عن طريق ماستر كارد او فيزا',
                     )
                   ],
                 ),

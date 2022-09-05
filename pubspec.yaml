@@ -51,7 +51,9 @@ dependencies:
   firebase_core: ^1.21.1
   flutter_ringtone_player: ^3.2.0
   # Payments
-  moyasar_payment: ^0.0.9
+  moyasar_payment:
+    git:
+      url: https://github.com/AhmedAbogameel/moyasar_payment
   #carousel_slider
   carousel_slider: ^4.1.1
   pay:

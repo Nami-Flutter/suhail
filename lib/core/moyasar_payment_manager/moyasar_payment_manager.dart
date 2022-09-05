@@ -24,7 +24,7 @@ abstract class MoyasarPaymentManager {
       cardHolderName: creditModel.cardHolderName,
       cardNumber: creditModel.cardNumber,
       cvv: creditModel.cvv,
-      expiryManth: creditModel.month,
+      expiryMonth: creditModel.month,
       expiryYear: creditModel.year,
       callbackUrl: 'https://example.com/orders',
     );
