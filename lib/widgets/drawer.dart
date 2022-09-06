@@ -148,7 +148,8 @@ drawer(){
                     ),
                   ),
                 ),
-                Padding(
+                if (AppStorage.isLogged && isDebugVersion)
+                  Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
                   child: InkWell(
                     onTap: () {
@@ -195,8 +196,6 @@ drawer(){
                     ),
                   ),
                 ),
-                if (AppStorage.isLogged && isDebugVersion)
-
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
                   child: InkWell(

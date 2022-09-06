@@ -10,6 +10,8 @@ import 'package:soheel_app/widgets/app_bar.dart';
 import 'package:soheel_app/widgets/confirm_button.dart';
 import 'package:soheel_app/widgets/my_text.dart';
 
+import '../../../core/app_storage/app_storage.dart';
+
 class WalletView extends StatelessWidget {
   const WalletView({Key? key}) : super(key: key);
 
@@ -51,26 +53,27 @@ class WalletView extends StatelessWidget {
                       title: 'دفع العمولة عن طريق حساب بنكي',
                     ),
                     SizedBox(height: 15,),
-                    ConfirmButton(
-                      border: true,
-                      child: Row(
+                    if (AppStorage.isLogged && isDebugVersion)
+                      ConfirmButton(
+                        border: true,
+                        child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          MyText(title: 'دفع العمولة عن طريق', color: kPrimaryColor,),
-                          SizedBox(width: 10),
-                          Image.asset(getAsset('visa'), width: 35, height: 25, fit: BoxFit.fill,),
-                          SizedBox(width: 10),
-                          Image.asset(getAsset('mastercard'), width: 35, height: 25, fit: BoxFit.fill,),
-                          SizedBox(width: 10),
-                          Image.asset(getAsset('mada'), width: 35, height: 30, fit: BoxFit.cover,),
-                          SizedBox(width: 10),
-                          Image.asset(getAsset('american-express'), width: 35, height: 35, fit: BoxFit.cover,),
-                        ],
+                          children: [
+                            MyText(title: 'دفع العمولة عن طريق', color: kPrimaryColor,),
+                            SizedBox(width: 10),
+                            Image.asset(getAsset('visa'), width: 35, height: 25, fit: BoxFit.fill,),
+                            SizedBox(width: 10),
+                            Image.asset(getAsset('mastercard'), width: 35, height: 25, fit: BoxFit.fill,),
+                            SizedBox(width: 10),
+                            Image.asset(getAsset('mada'), width: 35, height: 30, fit: BoxFit.cover,),
+                            SizedBox(width: 10),
+                            Image.asset(getAsset('american-express'), width: 35, height: 35, fit: BoxFit.cover,),
+                          ],
+                        ),
+                        onPressed: () async => RouteManager.navigateTo(PaymentView(
+                          amount: double.parse(cubit.balance!),
+                        )),
                       ),
-                      onPressed: () async => RouteManager.navigateTo(PaymentView(
-                        amount: double.parse(cubit.balance!),
-                      )),
-                    )
                   ],
                 ),
               );
