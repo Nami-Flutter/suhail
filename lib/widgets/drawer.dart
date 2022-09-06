@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soheel_app/constants.dart';
@@ -14,8 +15,10 @@ import 'package:soheel_app/views/shared/trips/view.dart';
 import 'package:soheel_app/views/user/edit_profile/view.dart';
 import 'package:soheel_app/views/user/home/view.dart';
 import 'package:soheel_app/widgets/confirm_button.dart';
+import 'package:soheel_app/widgets/snack_bar.dart';
 
 import '../views/shared/terms_conditions/view.dart';
+import 'my_text.dart';
 
 drawer(){
   return Drawer(
@@ -145,6 +148,55 @@ drawer(){
                     ),
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
+                  child: InkWell(
+                    onTap: () {
+                      showCupertinoDialog(
+                        context: RouteManager.currentContext,
+                        builder: (context) => CupertinoAlertDialog(
+                          title: Column(
+                            children: [
+                              Icon(FontAwesomeIcons.userMinus, color: Colors.red.shade700, size: 50),
+                              SizedBox(height: 20),
+                              Text("حذف الحساب"),
+                            ],
+                          ),
+                          actions: [
+                            CupertinoButton(
+                              child: MyText(
+                                title: "تأكيد",
+                                color: Colors.red.shade700,
+                              ),
+                              onPressed: () {
+                                AppStorage.clearCache();
+                                showSnackBar('تم حذف الحساب بنجاح!');
+                                RouteManager.navigateAndPopAll(SplashView());
+                              },
+                            ),
+                            CupertinoButton(
+                              child: MyText(
+                                title: "الغاء",
+                                color: Colors.green.shade500,
+                              ),
+                              onPressed: RouteManager.pop,
+                            ),
+                          ],
+                        ),
+                        barrierDismissible: true,
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Icon(FontAwesomeIcons.userMinus, color: kPrimaryColor,size: 24,),
+                        SizedBox(width: 10,),
+                        Text('حذف الحساب',style: TextStyle(fontSize: 18,color: kAccentColor),)
+                      ],
+                    ),
+                  ),
+                ),
+                if (AppStorage.isLogged && isDebugVersion)
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
                   child: InkWell(

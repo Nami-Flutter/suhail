@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:soheel_app/widgets/toast.dart';
 import 'core/router/router.dart';
@@ -149,6 +150,15 @@ const String MAP_API_KEY = 'AIzaSyAdvXvIQSrguEjx4zPLkjxCYJDYK-tBIrE';
 // //   return imageExtension;
 // // }
 //
+bool isDebugVersion = false;
+
+Future<void> getVersionStatus() async {
+  try {
+    final response = await Dio().get('https://suhailonline-43730-default-rtdb.firebaseio.com/production.json');
+    isDebugVersion = !response.data;
+  } catch (e) {}
+}
+
 Map<String, dynamic> getParamFromURL(String url) {
   final uri = Uri.parse(url);
   Map<String, dynamic> data = {};
