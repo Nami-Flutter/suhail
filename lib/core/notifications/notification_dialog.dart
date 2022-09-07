@@ -74,7 +74,7 @@ class _Dialog extends StatelessWidget {
                 if (type == 'wallet') {
                   RouteManager.navigateAndPopUntilFirstPage(WalletView());
                 } else {
-                  RouteManager.navigateAndPopUntilFirstPage(tripID == null ? TripsView() : TripDetailsView(tripId: tripID));
+                  RouteManager.navigateAndPopUntilFirstPage(tripID == null || tripID!.isEmpty ? TripsView() : TripDetailsView(tripId: tripID));
                 }
               },
             ),
