@@ -65,6 +65,12 @@ class AddTripCubit extends Cubit<AddTripStates> {
     formKey.currentState!.save();
     final formData = await _convertProductDataToFormData();
     try {
+      final foundCaptains = await foundAvailableCaptains();
+      if (!foundCaptains) {
+        showSnackBar('عفوا لا يوجد كباتن متاحة في النطاق!', errorMessage: true);
+        emit(AddTripInitState());
+        return;
+      }
       final response = await DioHelper.post('user/trip/add_trip', formData: formData);
       final data = response.data;
       if (data['success'] != null) {
@@ -161,6 +167,21 @@ class AddTripCubit extends Cubit<AddTripStates> {
     emit(AddTripInitState());
   }
 
+  Future<bool> foundAvailableCaptains() async {
+    try {
+      final response = await DioHelper.post(
+          'user/trip/check_available_captains',
+          data: {
+            'trip_category': tripCategory,
+            'trip_receipt_long': sourceLng.toString(),
+            'trip_receipt_lat': sourceLat.toString(),
+          }
+      );
+      return (response.data['min_area_captains'].toString() != '0' || response.data['max_area_captains'].toString() != '0');
+    } catch (_) {
+      return false;
+    }
+  }
 
   static bool isTimerDialogOpen = false;
 

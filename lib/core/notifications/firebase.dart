@@ -80,7 +80,6 @@ class FirebaseMessagingHelper {
       'token': fcm,
       'customer_id': AppStorage.customerID,
     };
-    print(fcm);
     await DioHelper.post('token', data: body);
   }
 
