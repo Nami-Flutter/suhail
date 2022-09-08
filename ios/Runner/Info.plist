@@ -24,41 +24,45 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>https</string>
+		<string>http</string>
+		<string>tel</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Location is required to detect user latitude and longitude for easy location picking when adding a new trip on the App.</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Location is required to detect user latitude and longitude for easy location picking when adding a new trip on the App.</string>
-    <key>NSLocationUsageDescription</key>
-    <string>Location is required to detect user latitude and longitude for easy location picking when adding a new trip on the App.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>Location is required to detect user latitude and longitude for easy location picking when adding a new trip on the App.</string>
-    <key>NSAppleMusicUsageDescription</key>
-    <string>App user your it</string>
-    <key>NSBluetoothPeripheralUsageDescription</key>
-    <string>App bluetooth use.</string>
-    <key>NSCalendarsUsageDescription</key>
-    <string>App user your calendar.</string>
-    <key>NSCameraUsageDescription</key>
-    <string>App would like to use your camera to can send photos and videos in chats and edit your profile photo</string>
-    <key>NSContactsUsageDescription</key>
-    <string>App would like access to your Contacts and upload it to our servers to help us to find your friends and family using ${PRODUCT_NAME} and allow you to chat with them</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Used to capture audio for Voice Notes in chats</string>
-    <key>NSMotionUsageDescription</key>
-    <string>App motion use.</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>$(PRODUCT_NAME) would like access to your photo gallery,to help you set your profile photo and send it in chat</string>
-    <key>NSSpeechRecognitionUsageDescription</key>
-    <string>App speech recognition use.</string>
-    <key>UIBackgroundModes</key>
-    <array>
-    	<string>audio</string>
-    	<string>fetch</string>
-   		<string>processing</string>
-   		<string>remote-notification</string>
-   	</array>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>App user your it</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>App bluetooth use.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>App user your calendar.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>App would like to use your camera to can send photos and videos in chats and edit your profile photo</string>
+	<key>NSContactsUsageDescription</key>
+	<string>App would like access to your Contacts and upload it to our servers to help us to find your friends and family using ${PRODUCT_NAME} and allow you to chat with them</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location is required to detect user latitude and longitude for easy location picking when adding a new trip on the App.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location is required to detect user latitude and longitude for easy location picking when adding a new trip on the App.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Location is required to detect user latitude and longitude for easy location picking when adding a new trip on the App.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location is required to detect user latitude and longitude for easy location picking when adding a new trip on the App.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to capture audio for Voice Notes in chats</string>
+	<key>NSMotionUsageDescription</key>
+	<string>App motion use.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like access to your photo gallery,to help you set your profile photo and send it in chat</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>App speech recognition use.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

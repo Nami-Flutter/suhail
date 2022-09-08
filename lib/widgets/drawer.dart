@@ -42,7 +42,7 @@ drawer(){
           ),
           child: Row(
             children: [
-              Image.asset('assets/images/logo.png',width: sizeFromWidth(5),height: sizeFromHeight(3),),
+              Expanded(child: Image.asset('assets/images/logo.png',width: sizeFromWidth(5),height: sizeFromHeight(3),)),
               SizedBox(width: 20,),
               Text(AppStorage.getUserModel()?.firstname.toString() ?? '',style: TextStyle(fontSize: 24,color: kWhiteColor),)
             ],
