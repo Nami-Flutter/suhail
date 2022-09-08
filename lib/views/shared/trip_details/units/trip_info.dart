@@ -121,6 +121,7 @@ class _TripInfoState extends State<TripInfo> {
                   ),
                 ]
             ),
+
             Divider(),
             Column(
                 children: [

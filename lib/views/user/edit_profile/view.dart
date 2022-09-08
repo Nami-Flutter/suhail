@@ -58,7 +58,7 @@ class EditProfileView extends StatelessWidget {
                   // ),
                   InputFormField(
                     hint: '  الاسم الاول',
-                    fillColor: kWhiteColor,
+                    fillColor: kGreyColor,
                     horizontalMargin: 20,
                     verticalMargin: 5,
                     disabled: true,
@@ -67,7 +67,7 @@ class EditProfileView extends StatelessWidget {
                   ),
                   InputFormField(
                     hint: 'الاسم الاخير  ',
-                    fillColor: kWhiteColor,
+                    fillColor: kGreyColor,
                     horizontalMargin: 20,
                     disabled: true,
                     verticalMargin: 5,
@@ -76,7 +76,7 @@ class EditProfileView extends StatelessWidget {
                   ),
                   InputFormField(
                     hint: 'رقم الجوال  ',
-                    fillColor: kWhiteColor,
+                    fillColor: kGreyColor,
                     horizontalMargin: 20,
                     verticalMargin: 5,
                     controller: cubit.telephoneController,
