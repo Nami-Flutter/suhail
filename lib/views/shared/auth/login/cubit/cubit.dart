@@ -46,6 +46,7 @@ class LoginCubit extends Cubit<LoginStates>{
             customerId: data['customer_id'],
             telephone: telephone!,
             completeRegister: false,
+            isCaptain: isCaptain,
           ));
           showSnackBar('برجاء تفعيل رقم الجوال');
         }else if(data['logged'] == true || data['customer_status'] == 1 ){
@@ -72,6 +73,7 @@ class LoginCubit extends Cubit<LoginStates>{
             customerId: data['customer_id'],
             telephone: telephone!,
             completeRegister: true,
+            isCaptain: isCaptain,
           ));
           showSnackBar('برجاء تفعيل رقم الجوال');
         }else if(data['logged'] == true || data['customer_status'] == "1" ){

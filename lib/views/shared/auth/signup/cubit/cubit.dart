@@ -48,6 +48,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
             customerId: data['captain_id'],
             telephone: telephone!,
             completeRegister: true,
+            isCaptain: isCaptain,
           ));
           // final response = await DioHelper.post('captain/register_info', data: {
           //   "firstname": firstname,
@@ -76,6 +77,7 @@ class SignUpCubit extends Cubit<SignUpStates> {
             customerId: data['customer_id'],
             telephone: telephone.toString(),
             completeRegister: false,
+            isCaptain: isCaptain,
           ));
         }
       }

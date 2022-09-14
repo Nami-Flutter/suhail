@@ -44,7 +44,10 @@ class ConfirmButton extends StatelessWidget {
       Padding(
         padding: EdgeInsets.symmetric(vertical: verticalMargin!,horizontal: horizontalMargin!),
         child: InkWell(
-          onTap: onPressed,
+          onTap: onPressed == null ? null : () {
+            closeKeyboard();
+            onPressed!();
+          },
           radius: 10,
           borderRadius: BorderRadius.circular(10),
           child: Container(
@@ -64,7 +67,7 @@ class ConfirmButton extends StatelessWidget {
               )),
             ),
             decoration: BoxDecoration(
-              color: border == true ? Colors.transparent : color ?? kPrimaryColor,
+              color: onPressed == null ? kDarkGreyColor : border == true ? Colors.transparent : color ?? kPrimaryColor,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
                 color: color!,

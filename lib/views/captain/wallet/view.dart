@@ -53,7 +53,7 @@ class WalletView extends StatelessWidget {
                       title: 'دفع العمولة عن طريق حساب بنكي',
                     ),
                     SizedBox(height: 15,),
-                    if (AppStorage.isLogged && isDebugVersion)
+                    if (AppStorage.isLogged && !isDebugVersion)
                       ConfirmButton(
                         border: true,
                         child: Row(

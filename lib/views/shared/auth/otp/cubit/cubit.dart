@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:soheel_app/core/app_storage/app_storage.dart';
 import 'package:soheel_app/views/captain/complete_register/view.dart';
 import 'package:soheel_app/views/shared/auth/login/view.dart';
 import 'package:soheel_app/views/shared/auth/otp/cubit/states.dart';
@@ -12,7 +13,7 @@ import '../../../../../core/dio_manager/dio_manager.dart';
 import '../../../../../core/router/router.dart';
 
 class OtpCubit extends Cubit<OtpStates> {
-  OtpCubit({required this.telephone, required this.customerId, required this.completeRegister}) : super(OtpInitStates());
+  OtpCubit({required this.isCaptain, required this.telephone, required this.customerId, required this.completeRegister}) : super(OtpInitStates());
 
   static OtpCubit of(context) => BlocProvider.of(context);
   final int customerId;
@@ -20,6 +21,7 @@ class OtpCubit extends Cubit<OtpStates> {
   final formKey = GlobalKey<FormState>();
   final String? telephone;
   final bool completeRegister;
+  final bool isCaptain;
 
   Future<void> activate() async{
     emit(OtpLoadingStates());
@@ -31,6 +33,9 @@ class OtpCubit extends Cubit<OtpStates> {
           });
       final data = response.data;
       if(data['success'] == true){
+        if (!completeRegister) {
+          getUserAndCache(customerId, isCaptain ? 2 : 1);
+        }
         RouteManager.navigateAndPopAll(completeRegister ? CCompleteRegisterView(telephone: telephone!,) : HomeView());
       }else {
         showSnackBar(data['message']);

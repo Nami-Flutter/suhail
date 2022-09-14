@@ -14,10 +14,11 @@ import '../../../../widgets/pin_code_field.dart';
 import '../../../../widgets/text_form_field.dart';
 
 class OtpView extends StatelessWidget {
-  const OtpView({Key? key, required this.telephone, required this.customerId, required this.completeRegister}) : super(key: key);
+  const OtpView({Key? key, required this.telephone, required this.customerId, required this.completeRegister, required this.isCaptain}) : super(key: key);
   final String telephone;
   final int customerId;
   final bool completeRegister;
+  final bool isCaptain;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -25,6 +26,7 @@ class OtpView extends StatelessWidget {
         telephone: telephone,
         customerId: customerId,
         completeRegister: completeRegister,
+        isCaptain: isCaptain,
       ),
       child: Scaffold(
         // appBar: appBar(),

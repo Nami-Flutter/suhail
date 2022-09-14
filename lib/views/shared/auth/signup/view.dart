@@ -115,12 +115,12 @@ class SignUpView extends StatelessWidget {
                                     child: Text(' الشروط و الأحكام ', style: TextStyle(color: kPrimaryColor), ))
                               ],
                             ),
-                            state is SignUpLoadingState ? Loading() : ConfirmButton(
+                            state is SignUpLoadingState ? Loading(vMargin: 10) : ConfirmButton(
                               title: '  انشاء حساب جديد',
                               border: false,
                               verticalMargin: 10,
                               color: kPrimaryColor,
-                                onPressed: cubit.agreedToTerms ? cubit.signUp : null,
+                              onPressed: cubit.agreedToTerms ? cubit.signUp : null,
                             ),
                           ],
                         );
