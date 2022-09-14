@@ -13,7 +13,8 @@ void main() async {
   DioHelper.init();
   await AppStorage.init();
   getVersionStatus();
-  getUserAndCache(320, 1);
+  getPriceStatementFromFirebase();
+  // getUserAndCache(320, 1);
   // getUserAndCache(323, 2);
   runApp(const MyApp());
 }

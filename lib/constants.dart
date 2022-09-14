@@ -159,6 +159,17 @@ Future<void> getVersionStatus() async {
   } catch (e) {}
 }
 
+String priceStatementFromFirebase = '';
+Future<String> getPriceStatementFromFirebase() async {
+  try {
+    final response = await Dio().get('https://suhailonline-43730-default-rtdb.firebaseio.com/price.json');
+    priceStatementFromFirebase = response.data;
+    return response.data;
+  } catch (e) {}
+  priceStatementFromFirebase = '';
+  return '';
+}
+
 Map<String, dynamic> getParamFromURL(String url) {
   final uri = Uri.parse(url);
   Map<String, dynamic> data = {};

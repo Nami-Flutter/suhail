@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:soheel_app/views/user/requset_trip/cubit/cubit.dart';
+import 'package:soheel_app/widgets/my_text.dart';
 
 import '../../../../constants.dart';
 import '../../../../core/router/router.dart';
@@ -171,30 +172,32 @@ class _FieldsState extends State<Fields> {
           padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
           child: Text('تكلفة الرحلة  : ',style: Theme.of(context).textTheme.headline6!.copyWith(color: kPrimaryColor),),
         ),
-        InkWell(
-          onTap: cubit.getCost,
-          splashColor: kPrimaryColor,
-          hoverColor: kPrimaryColor,
-          child: Container(
-            padding: EdgeInsets.all(15),
-            margin: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: kWhiteColor
-            ),
-            child: Row(
-              children: [
-                Icon(FontAwesomeIcons.solidMoneyBillAlt,size: 26,color: kPrimaryColor,),
-                SizedBox(width: 20,),
-                Text('تكلفة الرحلة',style: Theme.of(context).textTheme.headline6!.copyWith(color: kBlueColor),),
-                Spacer(),
-                Text(cubit.costValue == null ? '0.0' : cubit.costValue!,style: Theme.of(context).textTheme.headline6!.copyWith(color: kPrimaryColor),)
-
-              ],
-            ),
+        Container(
+          padding: EdgeInsets.all(15),
+          margin: EdgeInsets.symmetric(vertical: 10,horizontal: 30),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: kWhiteColor
+          ),
+          child: Row(
+            children: [
+              Icon(FontAwesomeIcons.solidMoneyBillAlt,size: 26,color: kPrimaryColor,),
+              SizedBox(width: 20,),
+              Text('تكلفة الرحلة',style: Theme.of(context).textTheme.headline6!.copyWith(color: kBlueColor),),
+              Spacer(),
+              Text(cubit.costValue == null ? '0.0' : cubit.costValue!,style: Theme.of(context).textTheme.headline6!.copyWith(color: kPrimaryColor),)
+            ],
           ),
         ),
-
+        Align(
+          alignment: Alignment.centerLeft,
+          child: MyText(
+            title: priceStatementFromFirebase,
+            fontWeight: FontWeight.normal,
+            fontSize: 12,
+            hMargin: 30,
+          ),
+        ),
       ],
     );
   }
