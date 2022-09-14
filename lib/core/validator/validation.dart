@@ -37,13 +37,13 @@ class Validator {
 
   static String? password(String? value){
     if(value!.isEmpty) return 'حقل فارغ!';
-    else if(value.length < 6) return 'كلمة المرور يجب الا تقل عن ٦ احرف';
+    else if(value.length < 4) return 'كلمة المرور يجب الا تقل عن ٤ احرف';
     else return null;
   }
 
   static String? confirmPassword(String value,String password){
     if(value.isEmpty) return 'حقل فارغ!';
-    else if(value.length < 6) return 'كلمة المرور يجب الا تقل عن ٦ احرف';
+    else if(value.length < 4) return 'كلمة المرور يجب الا تقل عن ٤ احرف';
     else if(password != value) return 'كلمة المرور غير متطابقة';
     else return null;
   }

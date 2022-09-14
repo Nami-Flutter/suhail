@@ -102,7 +102,10 @@ class LocationManager {
     return null;
   }
 
-  static void showLocationErrorBar() => showSnackBar('غير قادر علي تحديد موقعك!', errorMessage: true);
+  static void showLocationErrorBar() => showSnackBar(
+    'غير قادر علي تحديد موقعك, يجب تفعيل بيانات الموقع من الاعدادات واعطاء صلاحية الموقع للتطبيق',
+    errorMessage: true,
+  );
 
   static Future<String> getCityByLatLng({required double latitude,required double longitude})async{
     String? location;
