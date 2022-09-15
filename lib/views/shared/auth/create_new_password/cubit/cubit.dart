@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:soheel_app/views/shared/auth/create_new_password/cubit/states.dart';
 import 'package:soheel_app/views/shared/auth/login/cubit/states.dart';
@@ -12,17 +13,15 @@ import '../../../../../core/app_storage/app_storage.dart';
 import '../../../../../core/dio_manager/dio_manager.dart';
 import '../../../../../core/router/router.dart';
 
-class NewPasswordCubit extends Cubit<NewPasswordStates>{
+class NewPasswordCubit extends Cubit<NewPasswordStates> {
   NewPasswordCubit() : super(NewPasswordInitState());
 
   static NewPasswordCubit of(context) => BlocProvider.of(context);
 
-  String? password,confirm;
+  String? password, confirm;
   final formKey = GlobalKey<FormState>();
 
-
-
-  Future<void> newPassword () async{
+  Future<void> newPassword() async {
     formKey.currentState!.save();
     if (!formKey.currentState!.validate()) return;
     emit(NewPasswordLoadingState());
@@ -43,9 +42,4 @@ class NewPasswordCubit extends Cubit<NewPasswordStates>{
     }
     emit(NewPasswordInitState());
   }
-
-
-
-
-
 }
