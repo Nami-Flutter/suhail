@@ -34,7 +34,7 @@ class ForgetPassCubit extends Cubit<ForgetPassStates>{
       if(data.containsKey('success'))
         {
           showSnackBar(data['success']);
-          RouteManager.navigateAndPopAll(IntroView());
+          RouteManager.pop();
         }else
           {
             showSnackBar(data.toString());
