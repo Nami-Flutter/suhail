@@ -17,34 +17,19 @@ class FirebaseMessagingHelper {
   }
 
   static void onMessage() {
-    FirebaseMessaging.onMessage.listen((event) {
+    FirebaseMessaging.onMessage.listen((notification) {
       FlutterRingtonePlayer.play(
         android: AndroidSounds.notification,
         ios: IosSounds.glass,
         looping: false,
       );
-      if (event.data['type'] == 'finished trip') {
-        showFinishedTripDialog(
-          title: event.notification?.title ?? '',
-          tripID: event.data['trip_id'] ?? '',
-          body: event.notification?.body ?? '',
-          cost: event.data['trip_cost'] ?? '',
-          distance: event.data['trip_distance'] ?? '',
-        );
-      } else {
-        showNotificationDialog(
-          title: event.notification?.title ?? '',
-          body: event.notification?.body ?? '',
-          tripID: event.data['trip_id'] ?? '',
-          type: event.data['type'] ?? '',
-        );
-      }
+      _handleNotificationReceiver(notification);
     });
   }
 
   static void onMessageOpenedApp() {
-    FirebaseMessaging.onMessageOpenedApp.listen((event) {
-      // RouteManager.navigateAndPopUntilFirstPage(TamidDetailsView(title: event.notification?.title ?? '', id: event.data['tamid_id']));
+    FirebaseMessaging.onMessageOpenedApp.listen((notification) {
+      _handleNotificationReceiver(notification);
     });
   }
 
@@ -53,22 +38,7 @@ class FirebaseMessagingHelper {
     if (notification == null) {
       return;
     }
-    if (notification.data['type'] == 'finished trip') {
-      showFinishedTripDialog(
-        title: notification.notification?.title ?? '',
-        tripID: notification.data['trip_id'] ?? '',
-        body: notification.notification?.body ?? '',
-        cost: notification.data['trip_cost'] ?? '',
-        distance: notification.data['trip_distance'] ?? '',
-      );
-    } else {
-      showNotificationDialog(
-        title: notification.notification?.title ?? '',
-        body: notification.notification?.body ?? '',
-        tripID: notification.data['trip_id'] ?? '',
-        type: notification.data['type'] ?? '',
-      );
-    }
+    _handleNotificationReceiver(notification);
     // RouteManager.navigateAndPopUntilFirstPage(TamidDetailsView(title: notification.notification?.title ?? '', id: notification.data['tamid_id']));
   }
 
@@ -89,6 +59,25 @@ class FirebaseMessagingHelper {
       return fcm;
     } catch (_) {
       return '';
+    }
+  }
+
+  static Future<void> _handleNotificationReceiver(RemoteMessage notification) async {
+    if (notification.data['type'] == 'finished trip') {
+      showFinishedTripDialog(
+        title: notification.notification?.title ?? '',
+        tripID: notification.data['trip_id'] ?? '',
+        body: notification.notification?.body ?? '',
+        cost: notification.data['trip_cost'] ?? '',
+        distance: notification.data['trip_distance'] ?? '',
+      );
+    } else {
+      showNotificationDialog(
+        title: notification.notification?.title ?? '',
+        body: notification.notification?.body ?? '',
+        tripID: notification.data['trip_id'] ?? '',
+        type: notification.data['type'] ?? '',
+      );
     }
   }
 

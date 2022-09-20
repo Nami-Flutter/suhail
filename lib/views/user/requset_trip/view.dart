@@ -57,7 +57,10 @@ class _RequestTripViewState extends State<RequestTripView> {
                   PicsUploads(),
                   DetailsFields(),
                   BlocBuilder<AddTripCubit,AddTripStates>(builder: (context, state) {
-                   return state is AddTripLoadingState ? Loading() :
+                   return state is AddTripLoadingState ? Padding(
+                     padding: const EdgeInsets.only(bottom: 30),
+                     child: Loading(),
+                   ) :
                      ConfirmButton(
                      // onPressed: ()=> openDialog() ,
                      onPressed: cubit.costValue == null || cubit.costValue!.isEmpty ? null : (){
