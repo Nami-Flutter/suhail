@@ -47,7 +47,7 @@ class ContactUsView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 40),
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Icon(FontAwesomeIcons.headset,size: 100,color: kGreyColor,),
                         SizedBox(height: 20,),
@@ -94,19 +94,16 @@ class ContactUsView extends StatelessWidget {
                     child: Column(
                       children: [
                         InputFormField(
-                          hint:AppStorage.getUserModel()!.firstname.toString(),
-                          fillColor: kGreyColor,
+                          hint: "الاسم",
                           horizontalMargin: 20,
+                          fillColor: kWhiteColor,
                           verticalMargin: 5,
-                          disabled: true,
-
                         ),
                         InputFormField(
-                          hint:AppStorage.getUserModel()!.telephone.toString(),
-                          fillColor: kGreyColor,
-                          disabled: true,
+                          hint: 'رقم الجوال',
                           horizontalMargin: 20,
                           verticalMargin: 5,
+                          fillColor: kWhiteColor,
                           maxLength: 10,
                         ),
                         InputFormField(

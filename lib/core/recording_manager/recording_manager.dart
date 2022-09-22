@@ -6,7 +6,7 @@ import 'package:record/record.dart';
 
 abstract class RecordingManager {
 
-  static const String _recordFileName = 'record.aac';
+  static const String _recordFileName = 'record.mp3';
 
   static Future<bool> _isGranted() async {
     final micPermission = await Permission.microphone.request();

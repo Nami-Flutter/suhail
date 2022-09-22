@@ -34,7 +34,7 @@ class MediaManager {
   }
 
   static Future<File?> pickImageFromCamera()async{
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.camera,maxHeight: 500,maxWidth: 1024, imageQuality: 25);
+    final pickedFile = await ImagePicker().pickImage(source: ImageSource.camera,maxHeight: 500,maxWidth: 1024, imageQuality: 75);
     if(pickedFile == null) return null;
     return File(pickedFile.path);
   }
