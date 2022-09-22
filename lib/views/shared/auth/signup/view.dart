@@ -111,7 +111,7 @@ class SignUpView extends StatelessWidget {
                                 ),
                                 Text('انا اوفق على جميع'),
                                 InkWell(
-                                    onTap: ()=> RouteManager.navigateTo(TermsAndConditionsView()),
+                                    onTap: ()=> RouteManager.navigateTo(TermsAndConditionsView(id: 5)),
                                     child: Text(' الشروط و الأحكام ', style: TextStyle(color: kPrimaryColor), ))
                               ],
                             ),

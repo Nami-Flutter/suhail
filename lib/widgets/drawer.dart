@@ -112,12 +112,12 @@ drawer(){
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
                   child: InkWell(
-                    onTap: ()=> RouteManager.navigateTo(AboutAppView()),
+                    onTap: ()=> RouteManager.navigateTo(TermsAndConditionsView(id: 4)),
                     child: Row(
                       children: [
                         Icon(FontAwesomeIcons.info,color: kPrimaryColor,size: 24,),
                         SizedBox(width: 10,),
-                        Text('حول التطبيق',style: TextStyle(fontSize: 18,color: kAccentColor),)
+                        Text('سياسة الخصوصية',style: TextStyle(fontSize: 18,color: kAccentColor),)
                       ],
                     ),
                   ),
@@ -125,7 +125,7 @@ drawer(){
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30,vertical: 10),
                   child: InkWell(
-                    onTap: ()=> RouteManager.navigateTo(TermsAndConditionsView()),
+                    onTap: ()=> RouteManager.navigateTo(TermsAndConditionsView(id: 5)),
                     child: Row(
                       children: [
                         Icon(FontAwesomeIcons.fileAlt,color: kPrimaryColor,size: 24,),
