@@ -6,7 +6,9 @@ import 'package:record/record.dart';
 
 abstract class RecordingManager {
 
-  static const String _recordFileName = 'record.mp3';
+  static const String _recordFileName = 'record.m4a';
+
+  static Record _record = Record();
 
   static Future<bool> _isGranted() async {
     final micPermission = await Permission.microphone.request();
@@ -19,9 +21,9 @@ abstract class RecordingManager {
     }
     final path = (await _getRecordingDirectory()).path + '/';
     HapticFeedback.heavyImpact();
-    await Record.start(
+    await _record.start(
       path: path + _recordFileName,
-      encoder: AudioEncoder.AAC,
+      encoder: AudioEncoder.aacLc,
       bitRate: 64000,
       samplingRate: 44100,
     );
@@ -30,7 +32,7 @@ abstract class RecordingManager {
 
   /// Returning File Path as String
   static Future<String> stopRecording() async {
-    await Record.stop();
+    await _record.stop();
     HapticFeedback.heavyImpact();
     return (await _getRecordingDirectory()).path + '/' + _recordFileName;
   }
